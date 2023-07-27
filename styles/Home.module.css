@@ -29,7 +29,7 @@
 }
 
 .title a {
-  color: #0070f3;
+  color: #1e63b3;
   text-decoration: none;
 }
 
@@ -70,7 +70,7 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 800px;
+  max-width: 1000px;
 }
 
 .card {
@@ -88,7 +88,7 @@
 .card:hover,
 .card:focus,
 .card:active {
-  color: #0070f3;
+  color: #2768b3;
   border-color: #0070f3;
 }
 
