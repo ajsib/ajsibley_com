@@ -1,3 +1,4 @@
+// ./pages/index.tsx
 import { Button, Container, Grid, Typography } from '@mui/material';
 import ReactMarkdown from 'react-markdown';
 import Link from 'next/link';
