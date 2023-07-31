@@ -9,7 +9,7 @@ const LogoutButton = () => {
   const handleLogout = async () => {
     try {
       // Make a request to the backend to logout the user
-      await axios.post('server.ajsibley.com/api/logout');
+      await axios.post('http://server.ajsibley.com/api/logout');
 
       // Clear any user-related data from the frontend (e.g., JWT token)
       // (Add your own logic here depending on how you handle authentication)
