@@ -1,9 +1,15 @@
 // ./pages/index.tsx
-import { Button, Container, Grid, Typography } from '@mui/material';
+import React from 'react';
+import { Button, Container, Grid, Typography, Box } from '@mui/material';
 import ReactMarkdown from 'react-markdown';
-import Link from 'next/link';
+import { useState } from 'react';
+import LoginForm from '../components/LoginForm';
+import RegisterForm from '../components/RegisterForm';
 
 export default function Home() {
+  const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+
   const markdown = ` # Welcome to ajsibley.com 👋
   ---
 
@@ -17,20 +23,36 @@ export default function Home() {
       {/* Login and Sign Up Buttons */}
       <Grid container justifyContent="center" spacing={2}>
         <Grid item>
-          <Link href="/login" passHref>
-            <Button variant="contained" color="primary">
-              Login
-            </Button>
-          </Link>
+          <Button
+            variant={showLogin ? 'text' : 'contained'}
+            color="primary"
+            onClick={() => {
+              setShowRegister(false);
+              setShowLogin(!showLogin);
+            }}
+          >
+            Login
+          </Button>
         </Grid>
         <Grid item>
-          <Link href="/signup" passHref>
-            <Button variant="contained" color="secondary">
-              Sign Up
-            </Button>
-          </Link>
+          <Button
+            variant={showRegister ? 'text' : 'contained'}
+            color="secondary"
+            onClick={() => {
+              setShowLogin(false);
+              setShowRegister(!showRegister);
+            }}
+          >
+            Register
+          </Button>
         </Grid>
       </Grid>
+
+      {/* Add a box with a height for the space */}
+      <Box height={30} />
+      
+      {showLogin && <LoginForm />}
+      {showRegister && <RegisterForm />}
     </Container>
   );
 }

@@ -1,16 +1,9 @@
-import { CssBaseline } from '@mui/material';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import type { AppProps } from 'next/app';
-
-const theme = createTheme();
+// pages/_app.tsx
+import { AppProps } from 'next/app';
+import withAuth from '../components/withAuth';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Component {...pageProps} />
-    </ThemeProvider>
-  );
+  return <Component {...pageProps} />;
 }
 
-export default MyApp;
+export default withAuth(MyApp);
