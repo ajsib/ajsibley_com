@@ -1,11 +1,13 @@
 // ./components/LoginForm.tsx
 import { Button, TextField, Grid } from '@mui/material';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import axios from 'axios';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
 export default function LoginForm() {
+  const route = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -19,7 +21,7 @@ export default function LoginForm() {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/api/login', {
+      const response = await axios.post('http://server.ajsibley.com/api/login', {
         username,
         password
       }, {
@@ -38,12 +40,13 @@ export default function LoginForm() {
         }
       };
 
-      const userResponse = await axios.get('http://localhost:3000/api/user', config);
+      const userResponse = await axios.get('http://server.ajsibley.com/api/user', config);
       console.log(userResponse.data);
 
       setUsername('');
       setPassword('');
       setErrorMessage('');
+      window.location.href = '/home';
     } catch (error : any) {
       console.log(error);
       setErrorMessage(error.response.data.message); // Set the error message received from the server
