@@ -25,7 +25,7 @@ export default function RegisterForm() {
       }
 
     try {
-      const response = await axios.post('http://server.ajsibley.com/api/register', {
+      const response = await axios.post('server.ajsibley.com/api/register', {
         username,
         password
       }, {

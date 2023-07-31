@@ -15,7 +15,7 @@ export default function AuthCheck({ children }: { children: ReactNode }) {
 
       if (token) {
         try {
-          await axios.get('http://server.ajsibley.com/api/user', {
+          await axios.get('server.ajsibley.com/api/user', {
             headers: {
               'Authorization': `Bearer ${token}`
             }
