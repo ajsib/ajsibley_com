@@ -21,7 +21,7 @@ export default function LoginForm() {
     }
 
     try {
-      const response = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/', {
+      const response = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/api/login', {
         username,
         password
       }, {
