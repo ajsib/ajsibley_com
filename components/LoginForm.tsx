@@ -21,7 +21,7 @@ export default function LoginForm() {
     }
 
     try {
-      const response = await axios.post('http://server.ajsibley.com/api/login', {
+      const response = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/', {
         username,
         password
       }, {
@@ -40,7 +40,7 @@ export default function LoginForm() {
         }
       };
 
-      const userResponse = await axios.get('http://server.ajsibley.com/api/user', config);
+      const userResponse = await axios.get('https://ajsibleyback-310003c917de.herokuapp.com/api/user', config);
       console.log(userResponse.data);
 
       setUsername('');
