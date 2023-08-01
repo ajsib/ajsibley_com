@@ -8,21 +8,21 @@ import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
 export default function LoginForm() {
   const route = useRouter();
-  const [username, setUsername] = useState('');
+  const [usernameOrEmail, setUsernameOrEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
 
-  if (!username || !password) {
-    setErrorMessage('Please enter all fields.');
-    return;
+    if (!usernameOrEmail || !password) {
+      setErrorMessage('Please enter all fields.');
+      return;
     }
 
     try {
       const response = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/api/login', {
-        username,
+        usernameOrEmail, // Use the updated field name for username or email
         password
       }, {
         headers: {
@@ -43,10 +43,10 @@ export default function LoginForm() {
       const userResponse = await axios.get('https://ajsibleyback-310003c917de.herokuapp.com/api/user', config);
       console.log(userResponse.data);
 
-      setUsername('');
+      setUsernameOrEmail(''); // Clear the input field after successful login
       setPassword('');
       setErrorMessage('');
-      window.location.href = '/home';
+      window.location.href = '/home'; // Redirect to the home page after successful login
     } catch (error : any) {
       console.log(error);
       setErrorMessage(error.response.data.message); // Set the error message received from the server
@@ -63,10 +63,10 @@ export default function LoginForm() {
             variant="outlined"
             required
             fullWidth
-            label="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            error={!username && errorMessage === 'Please enter all fields'}
+            label="Username or Email" // Update the label to indicate that both username and email are accepted
+            value={usernameOrEmail} // Use the updated state variable for username or email
+            onChange={(e) => setUsernameOrEmail(e.target.value)} // Use the updated state function for username or email
+            error={!usernameOrEmail && errorMessage === 'Please enter all fields'}
           />
         </Grid>
         <Grid item xs={12}>
