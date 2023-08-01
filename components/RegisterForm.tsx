@@ -3,11 +3,11 @@ import { Button, TextField, Grid } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import axios from 'axios';
-import ReactMarkdown from 'react-markdown'; 
+import ReactMarkdown from 'react-markdown';
 
 export default function RegisterForm() {
   const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
+  const [emailPhone, setEmailPhone] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -15,7 +15,7 @@ export default function RegisterForm() {
   const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
 
-    if (!username || !email || !password || !passwordConfirm) {
+    if (!username || !emailPhone || !password || !passwordConfirm) {
       setErrorMessage('Please enter all fields.');
       return;
     }
@@ -29,7 +29,7 @@ export default function RegisterForm() {
       // Register the user
       const response = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/api/register', {
         username,
-        email,
+        emailPhone,
         password
       }, {
         headers: {
@@ -41,7 +41,7 @@ export default function RegisterForm() {
 
       // If registration is successful, log in the user
       const loginResponse = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/api/login', {
-        usernameOrEmail: email, // You can use either email or username to log in
+        usernameOrEmail: emailPhone, // You can use either email or username to log in
         password
       }, {
         headers: {
@@ -54,7 +54,7 @@ export default function RegisterForm() {
       localStorage.setItem('token', data.token);
 
       setUsername('');
-      setEmail('');
+      setEmailPhone('');
       setPassword('');
       setPasswordConfirm('');
       setErrorMessage('');
@@ -85,9 +85,9 @@ export default function RegisterForm() {
               variant="outlined"
               required
               fullWidth
-              label="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              label="Email or Phone Number"
+              value={emailPhone}
+              onChange={(e) => setEmailPhone(e.target.value)}
             />
           </Grid>
           <Grid item xs={12}>
