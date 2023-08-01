@@ -1,6 +1,5 @@
 import { AppProps } from 'next/app';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { MoonLoader } from 'react-spinners';
 import AuthCheck from '../utils/AuthCheck';
 
