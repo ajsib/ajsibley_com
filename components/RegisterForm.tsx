@@ -27,7 +27,7 @@ export default function RegisterForm() {
 
     try {
       // Register the user
-      const response = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/api/register', {
+      const response = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/api/user/register', {
         username,
         emailPhone,
         password
@@ -40,7 +40,7 @@ export default function RegisterForm() {
       console.log(response.data);
 
       // If registration is successful, log in the user
-      const loginResponse = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/api/login', {
+      const loginResponse = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/api/user/login', {
         usernameOrEmail: emailPhone, // You can use either email or username to log in
         password
       }, {

@@ -15,7 +15,7 @@ export default function AuthCheck({ children }: { children: ReactNode }) {
 
       if (token) {
         try {
-          await axios.get('https://ajsibleyback-310003c917de.herokuapp.com/api/user', {
+          await axios.get('https://ajsibleyback-310003c917de.herokuapp.com/api/user/user', {
             headers: {
               'Authorization': `Bearer ${token}`
             }

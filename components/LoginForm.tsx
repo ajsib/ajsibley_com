@@ -21,7 +21,7 @@ export default function LoginForm() {
     }
 
     try {
-      const response = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/api/login', {
+      const response = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/api/user/login', {
         usernameOrEmail, // Use the updated field name for username or email
         password
       }, {
@@ -40,7 +40,7 @@ export default function LoginForm() {
         }
       };
 
-      const userResponse = await axios.get('https://ajsibleyback-310003c917de.herokuapp.com/api/user', config);
+      const userResponse = await axios.get('https://ajsibleyback-310003c917de.herokuapp.com/api/user/user', config);
       console.log(userResponse.data);
 
       setUsernameOrEmail(''); // Clear the input field after successful login
