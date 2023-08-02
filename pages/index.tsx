@@ -5,7 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import { useState } from 'react';
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
-import Card from '../components/cards/Card';
+import CardGrid from '../components/cards/CardGrid';
 
 export default function Home() {
   const [showLogin, setShowLogin] = useState(false);
@@ -16,6 +16,16 @@ export default function Home() {
 
   Every conversation is a blank canvas and you are the artists.  
   Why not paint a masterpiece? ✨`;
+
+  const cardsData = [
+    { front: <div>Front 1</div>, back: <div>Back 1</div> },
+    { front: <div>Front 2</div>, back: <div>Back 2</div> },
+    { front: <div>Front 3</div>, back: <div>Back 3</div> },
+    { front: <div>Front 4</div>, back: <div>Back 4</div> },
+    { front: <div>Front 5</div>, back: <div>Back 5</div> },
+    { front: <div>Front 6</div>, back: <div>Back 6</div> },
+    { front: <div>Front 7</div>, back: <div>Back 7</div> },
+  ];
 
   return (
     <Container maxWidth="sm">
@@ -54,7 +64,7 @@ export default function Home() {
       
       {showLogin && <LoginForm />}
       {showRegister && <RegisterForm />}
-      <Card front={<div>Front 1</div>} back={<div>Back 1</div>} />
+      <CardGrid cards={cardsData} />
     </Container>
   );
 }

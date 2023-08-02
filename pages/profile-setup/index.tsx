@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Typography, Box } from '@mui/material';
 import ReactMarkdown from 'react-markdown';
 import Card from '../../components/cards/Card';
-import Grid from '../../components/cards/Grid';
+import Grid from '../../components/cards/CardGrid';
 
 
 export default function Home() {
