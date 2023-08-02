@@ -1,4 +1,3 @@
-// ./components/AuthCheck.tsx
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
@@ -15,11 +14,17 @@ export default function AuthCheck({ children }: { children: ReactNode }) {
 
       if (token) {
         try {
-          await axios.get('https://ajsibleyback-310003c917de.herokuapp.com/api/user/user', {
+          const response = await axios.get('https://ajsibleyback-310003c917de.herokuapp.com/api/user/user', {
             headers: {
               'Authorization': `Bearer ${token}`
             }
           });
+
+          // If the user is a new user and not accessing the profile setup page, redirect to the profile setup page
+          if (response.data.isNewUser && router.pathname !== '/profile-setup') {
+            router.push('/profile-setup');
+            return;
+          }
 
           // If the user is already authenticated and accessing the / page, redirect to the home page
           if (router.pathname === '/') {
@@ -56,3 +61,4 @@ export default function AuthCheck({ children }: { children: ReactNode }) {
 
   return children;
 }
+

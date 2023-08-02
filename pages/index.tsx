@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import { useState } from 'react';
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
+import Card from '../components/cards/Card';
 
 export default function Home() {
   const [showLogin, setShowLogin] = useState(false);
@@ -53,6 +54,7 @@ export default function Home() {
       
       {showLogin && <LoginForm />}
       {showRegister && <RegisterForm />}
+      <Card front={<div>Front 1</div>} back={<div>Back 1</div>} />
     </Container>
   );
 }

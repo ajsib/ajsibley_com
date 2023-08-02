@@ -34,7 +34,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   // Wrap the component with AuthCheck for authentication and authorization purposes
   return (
     <AuthCheck>
-      <Component {...pageProps} />
+      {/* Add a container div to limit the width of the website */}
+      <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+        <Component {...pageProps} />
+      </div>
     </AuthCheck>
   );
 }
