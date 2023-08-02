@@ -1,48 +1,40 @@
 // Grid.tsx
-import { ReactNode } from 'react';
-import { WidthProvider, Responsive } from 'react-grid-layout';
-import 'react-grid-layout/css/styles.css';
-import 'react-resizable/css/styles.css';
+import { motion } from 'framer-motion';
+import Card from './Card';
+import { useFlip } from './useFlip';
 
-const ResponsiveReactGridLayout = WidthProvider(Responsive);
-
-interface GridProps {
-  children: ReactNode[];
+interface CardProps {
+  front: React.ReactElement;
+  back: React.ReactElement;
 }
 
-export default function Grid({ children }: GridProps) {
-  // Generate layout
-  const generateLayout = () => {
-    let layout: { x: number; y: number; w: number; h: number; i: string }[] = [];
+interface GridProps {
+  cards: CardProps[];
+}
 
-    for (let i = 0; i < children.length; i++) {
-      const layoutItem = {
-        x: i % 2 * 2,
-        y: Math.floor(i / 2) * 2,
-        w: 2,
-        h: 2,
-        i: i.toString(),
-      };
-      layout.push(layoutItem);
-    }
-    return layout;
+export default function Grid({ cards }: GridProps) {
+  const { flipCard } = useFlip();
+
+  const gridStyles = {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    gap: '10px',
   };
 
-  const layout = generateLayout();
+  const handleDrag = (event: MouseEvent, info: { point: { x: number; y: number; }; }) => {
+    // Flip the card when it's dragged more than 30 pixels
+    if (info.point.x > 30) {
+      flipCard();
+    }
+  };
 
   return (
-    <ResponsiveReactGridLayout
-      className="layout"
-      layouts={{ lg: layout }}
-      cols={{ lg: 4, md: 4, sm: 2, xs: 2, xxs: 1 }}
-      rowHeight={100}
-      width={1200}
-    >
-      {children.map((child, index) => (
-        <div key={index} style={{ padding: '1rem' }}>
-          {child}
-        </div>
+    <motion.div style={gridStyles}>
+      {cards.map((card, index) => (
+        <motion.div key={index} onDrag={handleDrag}>
+          <Card front={card.front} back={card.back} />
+        </motion.div>
       ))}
-    </ResponsiveReactGridLayout>
+    </motion.div>
   );
 }

@@ -1,7 +1,7 @@
 // Card.tsx
 import ReactCardFlip from 'react-card-flip';
-import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useFlip } from './useFlip';
 
 interface CardProps {
   front: React.ReactElement;
@@ -11,14 +11,12 @@ interface CardProps {
 type CSSPosition = 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky';
 
 export default function Card({ front, back }: CardProps) {
-  const [isFlipped, setIsFlipped] = useState(false);
-
-  const flipCard = () => setIsFlipped(!isFlipped);
+  const { isFlipped, flipCard } = useFlip();
 
   const cardStyles = {
     maxWidth: '230px',
-    maxHeight: '500px',
-    minHeight: '372px',
+    maxHeight: '372px',
+    minHeight: '180px',
     borderRadius: '18px',
     boxShadow: '0px 5px 15px rgba(0,0,0,0.1)',
     overflow: 'hidden',
