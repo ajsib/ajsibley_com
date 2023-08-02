@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthCheck>
       {/* Add a container div to limit the width of the website */}
-      <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+      <div style={{ maxWidth: '350px', margin: '0 auto' }}>
         <Component {...pageProps} />
       </div>
     </AuthCheck>

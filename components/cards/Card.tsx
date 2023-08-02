@@ -17,13 +17,13 @@ export default function Card({ front, back }: CardProps) {
     maxWidth: '230px',
     maxHeight: '372px',
     minHeight: '180px',
-    borderRadius: '18px',
+    borderRadius: '15px',
     boxShadow: '0px 5px 15px rgba(0,0,0,0.1)',
     overflow: 'hidden',
     transition: 'width 0.6s',
     position: 'relative' as CSSPosition,
     padding: '10px', 
-    margin: '10px',
+    margin: '1px',
   };
 
   return (

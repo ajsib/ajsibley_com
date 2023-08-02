@@ -18,7 +18,7 @@ export default function Grid({ cards }: GridProps) {
   const gridStyles = {
     display: 'grid',
     gridTemplateColumns: 'repeat(2, 1fr)',
-    gap: '10px',
+    gap: '1px',
   };
 
   const handleDrag = (event: MouseEvent, info: { point: { x: number; y: number; }; }) => {
