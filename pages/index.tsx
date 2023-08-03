@@ -6,6 +6,7 @@ import { useState } from 'react';
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
 import CardGrid from '../components/cards/CardGrid';
+import Card from '../components/cards/Card';
 
 export default function Home() {
   const [showLogin, setShowLogin] = useState(false);
@@ -18,13 +19,43 @@ export default function Home() {
   Why not paint a masterpiece? ✨`;
 
   const cardsData = [
-    { front: <div>Front 1</div>, back: <div>Back 1</div> },
-    { front: <div>Front 2</div>, back: <div>Back 2</div> },
-    { front: <div>Front 3</div>, back: <div>Back 3</div> },
-    { front: <div>Front 4</div>, back: <div>Back 4</div> },
-    { front: <div>Front 5</div>, back: <div>Back 5</div> },
-    { front: <div>Front 6</div>, back: <div>Back 6</div> },
-    { front: <div>Front 7</div>, back: <div>Back 7</div> },
+    {
+      front: <div>Front of Card 1</div>,
+      back: <div>Back of Card 1</div>,
+      isExpanded: false,
+      onClick: () => console.log('Card 1 clicked'),
+    },
+    {
+      front: <div>Front of Card 2</div>,
+      back: <div>Back of Card 2</div>,
+      isExpanded: false,
+      onClick: () => console.log('Card 2 clicked'),
+    },
+    {
+      front: <div>Front of Card 3</div>,
+      back: <div>Back of Card 3</div>,
+      isExpanded: false,
+      onClick: () => console.log('Card 1 clicked'),
+    },
+    {
+      front: <div>Front of Card 4</div>,
+      back: <div>Back of Card 4</div>,
+      isExpanded: false,
+      onClick: () => console.log('Card 2 clicked'),
+    },
+    {
+      front: <div>Front of Card 5</div>,
+      back: <div>Back of Card 5</div>,
+      isExpanded: false,
+      onClick: () => console.log('Card 1 clicked'),
+    },
+    {
+      front: <div>Front of Card 6</div>,
+      back: <div>Back of Card 6</div>,
+      isExpanded: false,
+      onClick: () => console.log('Card 2 clicked'),
+    },
+
   ];
 
   return (
