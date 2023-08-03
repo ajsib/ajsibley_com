@@ -55,6 +55,42 @@ export default function Home() {
       isExpanded: false,
       onClick: () => console.log('Card 2 clicked'),
     },
+    {
+      front: <div>Front of Card 7</div>,
+      back: <div>Back of Card 7</div>,
+      isExpanded: false,
+      onClick: () => console.log('Card 1 clicked'),
+    },
+    {
+      front: <div>Front of Card 8</div>,
+      back: <div>Back of Card 8</div>,
+      isExpanded: false,
+      onClick: () => console.log('Card 2 clicked'),
+    },
+    {
+      front: <div>Front of Card 9</div>,
+      back: <div>Back of Card 9</div>,
+      isExpanded: false,
+      onClick: () => console.log('Card 1 clicked'),
+    },
+    {
+      front: <div>Front of Card 10</div>,
+      back: <div>Back of Card 10</div>,
+      isExpanded: false,
+      onClick: () => console.log('Card 2 clicked'),
+    },
+    {
+      front: <div>Front of Card 11</div>,
+      back: <div>Back of Card 11</div>,
+      isExpanded: false,
+      onClick: () => console.log('Card 1 clicked'),
+    },
+    {
+      front: <div>Front of Card 12</div>,
+      back: <div>Back of Card 12</div>,
+      isExpanded: false,
+      onClick: () => console.log('Card 2 clicked'),
+    },
 
   ];
 

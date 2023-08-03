@@ -26,7 +26,7 @@ export default function Card({ front, back, isExpanded, onClick, position }: Car
   const flipCard = () => setIsFlipped(!isFlipped);
 
   const cardStyles = {
-    width: isFlipped ? '230px' : '137px',
+    width: isFlipped ? '300px' : '140px',
     maxHeight: isExpanded ? '4px' : '372px', // Increase maxHeight when expanded
     minHeight: '180px',
     borderRadius: '15px',
