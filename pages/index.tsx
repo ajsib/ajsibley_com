@@ -19,9 +19,23 @@ export default function Home() {
   Why not paint a masterpiece? ✨`;
 
   const cardsData = [
-    {
-      front: <div>Front of Card 1</div>,
-      back: <div>Back of Card 1</div>,
+      {
+        front: (
+          <div>
+            <h3>Front of Card 1</h3>
+            <p>
+              This is the front content of Card 1. You can add more information here to make the card larger.
+            </p>
+          </div>
+        ),
+        back: (
+          <div>
+            <h3>Back of Card 1</h3>
+            <p>
+              This is the back content of Card 1. You can add more information here to make the card larger.
+            </p>
+          </div>
+        ),
       isExpanded: false,
       onClick: () => console.log('Card 1 clicked'),
     },

@@ -27,7 +27,7 @@ export default function Card({ front, back, isExpanded, onClick, position }: Car
 
   const cardStyles = {
     width: isFlipped ? '300px' : '140px',
-    maxHeight: isExpanded ? '4px' : '372px', // Increase maxHeight when expanded
+    maxHeight: isExpanded ? '400px' : '270px', // Increase maxHeight when expanded
     minHeight: '180px',
     borderRadius: '15px',
     boxShadow: '0px 5px 15px rgba(0,0,0,0.1)',
