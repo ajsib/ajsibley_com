@@ -1,5 +1,4 @@
-import { Masonry } from 'masonic';
-import React from 'react';
+import React, { useState } from 'react';
 import Card from './Card';
 
 interface CardProps {
@@ -7,6 +6,7 @@ interface CardProps {
   back: React.ReactElement;
   isExpanded: boolean;
   onClick: (height: number) => void;
+  position?: 'left' | 'right';
 }
 
 interface CardGridProps {
@@ -14,27 +14,51 @@ interface CardGridProps {
 }
 
 export default function CardGrid({ cards }: CardGridProps) {
-  return (
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
+
+  // Split the cards into two separate columns
+  const leftColumnCards = cards.filter((_, i) => i % 2 === 0);
+  const rightColumnCards = cards.filter((_, i) => i % 2 !== 0);
+
+   return (
     <div style={{
       display: 'flex',
       justifyContent: 'center',
-      maxWidth: '90%', // This value can be adjusted to your needs
-      margin: '0 auto' // This ensures horizontal centering
+      width: '99%',
+      margin: '0 auto'
     }}>
-      <Masonry
-        items={cards}
-        columnGutter={10} // space between columns
-        columnWidth={150} // width of each column
-        overscanBy={2} // number of items to render outside of the current scroll area
-        render={({ data }) => (
+      <div style={{ width: '50%' }}>
+        {leftColumnCards.map((card, index) => (
           <Card
-            front={data.front}
-            back={data.back}
-            isExpanded={data.isExpanded}
-            onClick={data.onClick}
+            key = {index}
+            front={card.front}
+            back={card.back}
+            isExpanded={expandedCard === index * 2}
+            onClick={(height: number) => {
+              if (height > 270) {
+                setExpandedCard(prevExpandedCard => prevExpandedCard === index * 2 ? null : index * 2); // Toggle the expanded card
+              }
+            }}
+            position="left"
           />
-        )}
-      />
+        ))}
+      </div>
+      <div style={{ width: '50%' }}>
+        {rightColumnCards.map((card, index) => (
+          <Card
+            key = {index}
+            front={card.front}
+            back={card.back}
+            isExpanded={expandedCard === index * 2 + 1}
+            onClick={(height: number) => {
+              if (height > 270) {
+                setExpandedCard(prevExpandedCard => prevExpandedCard === index * 2 + 1 ? null : index * 2 + 1); // Toggle the expanded card
+              }
+            }}
+            position="right"
+          />
+        ))}
+      </div>
     </div>
   );
 }
