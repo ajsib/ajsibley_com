@@ -1,3 +1,4 @@
+// CardGrid.tsx file
 import React, { useState } from 'react';
 import Card from './Card';
 
@@ -25,9 +26,11 @@ export default function CardGrid({ cards }: CardGridProps) {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      margin: '0 auto'
+      width: '100%',
+      margin: '0 auto',
+      gap: '4px',  // to create a space of 4px between left and right column
     }}>
-      <div style={{ flex: 1, margin: '0 2px', maxWidth: 'calc(50% - 2px)' }}> {/* Use flex: 1 and margin to create the gap */}
+      <div style={{ width: '161px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
         {leftColumnCards.map((card, index) => (
           <Card
             key={index}
@@ -36,14 +39,16 @@ export default function CardGrid({ cards }: CardGridProps) {
             isExpanded={expandedCard === index * 2}
             onClick={(height: number) => {
               if (height > 270) {
-                setExpandedCard(prevExpandedCard => prevExpandedCard === index * 2 ? null : index * 2); // Toggle the expanded card
+                setExpandedCard(index * 2);
+              } else {
+                setExpandedCard(null);
               }
             }}
             position="left"
           />
         ))}
       </div>
-      <div style={{ flex: 1, margin: '0 2px', maxWidth: 'calc(50% - 2px)' }}> {/* Use flex: 1 and margin to create the gap */}
+      <div style={{ width: '161px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
         {rightColumnCards.map((card, index) => (
           <Card
             key={index}
@@ -52,7 +57,9 @@ export default function CardGrid({ cards }: CardGridProps) {
             isExpanded={expandedCard === index * 2 + 1}
             onClick={(height: number) => {
               if (height > 270) {
-                setExpandedCard(prevExpandedCard => prevExpandedCard === index * 2 + 1 ? null : index * 2 + 1); // Toggle the expanded card
+                setExpandedCard(index * 2 + 1);
+              } else {
+                setExpandedCard(null);
               }
             }}
             position="right"

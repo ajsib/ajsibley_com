@@ -26,17 +26,16 @@ export default function Card({ front, back, isExpanded, onClick, position }: Car
   const flipCard = () => setIsFlipped(!isFlipped);
 
   const cardStyles = {
-    width: isFlipped ? '300px' : '140px',
+    width: isFlipped ? '303px' : '140px',
     maxHeight: isExpanded ? '400px' : '270px', // Increase maxHeight when expanded
     minHeight: '180px',
     borderRadius: '15px',
     boxShadow: '0px 5px 15px rgba(0,0,0,0.1)',
     overflow: 'hidden',
-    transition: 'width 0.5s',
+    transition: 'width 0.5s, height 0.5s, max-height 0.5s, min-height 0.5s, float 0.5s',
     position: 'relative' as CSSPosition,
     padding: '10px',
     margin: '1px',
-    float: position, // Set the float property based on the position prop
   };
 
   return (

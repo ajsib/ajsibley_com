@@ -24,7 +24,7 @@ export default function Home() {
           <div>
             <h3>Front of Card 1</h3>
             <p>
-              This is the front content of Card 1. You can add more information here to make the card larger.
+              This is the back content of Card 1. You can add more information here to make the card larger.
             </p>
           </div>
         ),
