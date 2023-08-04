@@ -32,11 +32,11 @@ export default function Card({ front, back, isExpanded, onClick, position }: Car
     borderRadius: '15px',
     boxShadow: '0px 5px 15px rgba(0,0,0,0.1)',
     overflow: 'hidden',
-    transition: 'width 0.5s, height 0.5s, max-height 0.5s, min-height 0.5s, float 0.5s',
+    transition: 'width 0.5s',
     position: 'relative' as CSSPosition,
     padding: '10px',
     margin: '1px',
-    // float: position, // Set the float property based on the position prop
+    float: position, // Set the float property based on the position prop
   };
 
   return (

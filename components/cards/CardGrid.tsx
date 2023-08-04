@@ -20,17 +20,17 @@ export default function CardGrid({ cards }: CardGridProps) {
   const leftColumnCards = cards.filter((_, i) => i % 2 === 0);
   const rightColumnCards = cards.filter((_, i) => i % 2 !== 0);
 
-   return (
+  return (
     <div style={{
       display: 'flex',
       justifyContent: 'center',
-      width: '99%',
+      alignItems: 'center',
       margin: '0 auto'
     }}>
-      <div style={{ width: '50%' }}>
+      <div style={{ flex: 1, margin: '0 2px', maxWidth: 'calc(50% - 2px)' }}> {/* Use flex: 1 and margin to create the gap */}
         {leftColumnCards.map((card, index) => (
           <Card
-            key = {index}
+            key={index}
             front={card.front}
             back={card.back}
             isExpanded={expandedCard === index * 2}
@@ -43,10 +43,10 @@ export default function CardGrid({ cards }: CardGridProps) {
           />
         ))}
       </div>
-      <div style={{ width: '50%' }}>
+      <div style={{ flex: 1, margin: '0 2px', maxWidth: 'calc(50% - 2px)' }}> {/* Use flex: 1 and margin to create the gap */}
         {rightColumnCards.map((card, index) => (
           <Card
-            key = {index}
+            key={index}
             front={card.front}
             back={card.back}
             isExpanded={expandedCard === index * 2 + 1}

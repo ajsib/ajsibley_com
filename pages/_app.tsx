@@ -35,7 +35,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AuthCheck>
       {/* Add a container div to make the website subtable for all platforms */}
-      <div style={{ width: '100%', maxWidth: '400px', margin: '0 auto', padding: '0 20px' }}>
+      <div style={{ width: '100%', maxWidth: '375px', margin: '0 auto', padding: '0 20px' }}>
         <Component {...pageProps} />
       </div>
     </AuthCheck>
