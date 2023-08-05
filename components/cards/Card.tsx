@@ -9,9 +9,10 @@ interface CardProps {
   isExpanded: boolean;
   onClick: (height: number) => void; // Add the onClick prop to the CardProps interface
   position?: 'left' | 'right'; // Add the position prop to the CardProps interface
+  zIndex?: number; // Add the zIndex prop to the CardProps interface
 }
 
-export default function Card({ front, back, isExpanded, onClick, position }: CardProps) {
+export default function Card({ front, back, isExpanded, onClick, position, zIndex }: CardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null); // Create a ref
 
@@ -36,7 +37,7 @@ export default function Card({ front, back, isExpanded, onClick, position }: Car
     padding: '10px',
     margin: '1px',
     backgroundColor: '#fff',
-    zIndex: isExpanded ? 3 : 1,
+    zIndex: zIndex, // Add the zIndex prop to the cardStyles object
   };
 
   return (
