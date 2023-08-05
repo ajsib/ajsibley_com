@@ -29,8 +29,16 @@ export default function CardGrid({ cards }: CardGridProps) {
       width: '100%',
       margin: '0 auto',
       gap: '4px',  // to create a space of 4px between left and right column
+      position: 'relative',  // Add a relative position here
     }}>
-      <div style={{ width: '161px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+      <div style={{
+         width: '161px',
+        display: 'flex', 
+        flexDirection: 'column', 
+        position: 'relative',  // Add a relative position here
+        alignItems: 'flex-start',
+        zIndex: 3// expandedCard !== null && expandedCard % 2 === 0 ? 2 : 1  // If expanded card is in left column, increase its zIndex
+         }}>
         {leftColumnCards.map((card, index) => (
           <Card
             key={index}
@@ -48,7 +56,14 @@ export default function CardGrid({ cards }: CardGridProps) {
           />
         ))}
       </div>
-      <div style={{ width: '161px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+      <div style={{
+         width: '161px', 
+         display: 'flex', 
+         flexDirection: 'column', 
+         position: 'relative',  // Add a relative position here
+         alignItems: 'flex-end',
+         zIndex: 2 //expandedCard !== null && expandedCard % 2 !== 0 ? 2 : 1  // If expanded card is in right column, increase its zIndex
+         }}>
         {rightColumnCards.map((card, index) => (
           <Card
             key={index}

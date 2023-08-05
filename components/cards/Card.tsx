@@ -1,3 +1,4 @@
+// ./components/cards/Card.tsx
 import ReactCardFlip from 'react-card-flip';
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -9,8 +10,6 @@ interface CardProps {
   onClick: (height: number) => void; // Add the onClick prop to the CardProps interface
   position?: 'left' | 'right'; // Add the position prop to the CardProps interface
 }
-
-type CSSPosition = 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky';
 
 export default function Card({ front, back, isExpanded, onClick, position }: CardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
@@ -33,9 +32,11 @@ export default function Card({ front, back, isExpanded, onClick, position }: Car
     boxShadow: '0px 5px 15px rgba(0,0,0,0.1)',
     overflow: 'hidden',
     transition: 'width 0.5s, height 0.5s, max-height 0.5s, min-height 0.5s, float 0.5s',
-    position: 'relative' as CSSPosition,
+    position: 'relative' as 'relative',
     padding: '10px',
     margin: '1px',
+    backgroundColor: '#fff',
+    zIndex: isExpanded ? 3 : 1,
   };
 
   return (
