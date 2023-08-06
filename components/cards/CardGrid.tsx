@@ -48,7 +48,7 @@ export default function CardGrid({ cards }: CardGridProps) {
       width: '100%',
       margin: '0 auto',
       gap: '4px',  // to create a space of 4px between left and right column
-      position: 'relative',  // relative position here
+      position: 'relative',  //  relative position here
     }}>
       <div style={{
         width: '161px',

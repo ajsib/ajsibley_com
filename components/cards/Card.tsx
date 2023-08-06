@@ -62,7 +62,7 @@ export default function Card({ front, back, isExpanded, onClick, position, zInde
             flipCard();
           }}
           animate={{ scale: 1 }} 
-          transition={{ duration: 0.5 }} 
+          transition={{ duration: 0.65 }} 
         >
           {front}
         </motion.div>
@@ -79,7 +79,7 @@ export default function Card({ front, back, isExpanded, onClick, position, zInde
             flipCard();
           }}
           animate={{ scale: 1 }} 
-          transition={{ duration: 0.5 }} 
+          transition={{ duration: 0.1 }} 
         >
           {back}
         </motion.div>
