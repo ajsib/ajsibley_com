@@ -33,6 +33,12 @@ export default function Home() {
             <h3>Back of Card 1</h3>
             <p>
               This is the back content of Card 1. You can add more information here to make the card larger.
+              We can do this by repeating many rows of text after many rows of text.
+              We can do this by repeating many rows of text after many rows of text.
+              We can do this by repeating many rows of text after many rows of text.
+              We can do this by repeating many rows of text after many rows of text.
+              We can do this by repeating many rows of text after many rows of text.
+
             </p>
           </div>
         ),
@@ -46,6 +52,55 @@ export default function Home() {
       onClick: () => console.log('Card 2 clicked'),
     },
     {
+      front: (
+        <div>
+          <h3>Front of Card 1</h3>
+          <p>
+            This is the back content of Card 1. You can add more information here to make the card larger.
+            
+          </p>
+        </div>
+      ),
+      back: (
+        <div>
+          <h3>Back of Card 1</h3>
+          <p>
+            This is the back content of Card 1. You can add more information here to make the card larger.
+            We can do this by repeating many rows of text after many rows of text.
+            We can do this by repeating many rows of text after many rows of text.
+
+          </p>
+        </div>
+      ),
+    isExpanded: false,
+    onClick: () => console.log('Card 1 clicked'),
+  },
+  {
+    front: (
+      <div>
+        <h3>Front of Card 1</h3>
+        <p>
+          This is the back content of Card 1. You can add more information here to make the card larger.
+          Here let me try. Yay that woirkedsdfasdf
+          
+        </p>
+      </div>
+    ),
+    back: (
+      <div>
+        <h3>Back of Card 1</h3>
+        <p>
+          This is the back content of Card 1. You can add more information here to make the card larger.
+          We can do this by repeating many rows of text after many rows of text.
+          We can do this by repeating many rows of text after many rows of text.
+
+        </p>
+      </div>
+    ),
+  isExpanded: false,
+  onClick: () => console.log('Card 1 clicked'),
+},
+    {
       front: <div>Front of Card 3</div>,
       back: <div>Back of Card 3</div>,
       isExpanded: false,
@@ -57,6 +112,7 @@ export default function Home() {
       isExpanded: false,
       onClick: () => console.log('Card 2 clicked'),
     },
+    
     {
       front: <div>Front of Card 5</div>,
       back: <div>Back of Card 5</div>,

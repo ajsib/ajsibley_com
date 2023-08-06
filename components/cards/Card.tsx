@@ -1,66 +1,82 @@
-// ./components/cards/Card.tsx
 import ReactCardFlip from 'react-card-flip';
 import { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion';
 
 interface CardProps {
   front: React.ReactElement;
   back: React.ReactElement;
   isExpanded: boolean;
-  onClick: (height: number) => void; // Add the onClick prop to the CardProps interface
-  position?: 'left' | 'right'; // Add the position prop to the CardProps interface
-  zIndex?: number; // Add the zIndex prop to the CardProps interface
+  onClick: (height: number) => void;
+  position?: 'left' | 'right';
+  zIndex?: number;
 }
 
 export default function Card({ front, back, isExpanded, onClick, position, zIndex }: CardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
-  const cardRef = useRef<HTMLDivElement>(null); // Create a ref
+  const frontCardRef = useRef<HTMLDivElement>(null);
+  const backCardRef = useRef<HTMLDivElement>(null);
+
+  const flipCard = () => {
+    setIsFlipped(!isFlipped);
+  };
 
   useEffect(() => {
-    if (isExpanded) {
-      const height = cardRef.current?.offsetHeight || 0;
-      onClick(height); // Call onClick with the height when the card expands
-    }
-  }, [isExpanded, onClick]);
+    let cardHeight = 0;
 
-  const flipCard = () => setIsFlipped(!isFlipped);
+    if (isFlipped) {
+      cardHeight = backCardRef.current?.offsetHeight || 0;
+    } else {
+      cardHeight = frontCardRef.current?.offsetHeight || 0;
+    }
+
+    if (isExpanded) {
+      onClick(cardHeight);
+    }
+  }, [isExpanded, isFlipped, onClick]);
 
   const cardStyles = {
     width: isFlipped ? '303px' : '140px',
-    maxHeight: isExpanded ? '400px' : '270px', // Increase maxHeight when expanded
-    minHeight: '180px',
+    maxHeight: isExpanded ? '400px' : '300px', // Back to being controlled
+    minHeight: '200px', // Back to being controlled
     borderRadius: '15px',
     boxShadow: '0px 5px 15px rgba(0,0,0,0.1)',
     overflow: 'hidden',
-    transition: 'width 0.5s, height 0.5s, max-height 0.5s, min-height 0.5s, float 0.5s',
+    transition: 'width 0.3s, float 0.3s', // Animation speed increased
     position: 'relative' as 'relative',
     padding: '10px',
     margin: '1px',
     backgroundColor: '#fff',
-    zIndex: zIndex, // Add the zIndex prop to the cardStyles object
+    zIndex: zIndex,
   };
 
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
       <motion.div
-        ref={cardRef} // Assign the ref to the motion.div
+        ref={frontCardRef}
         style={cardStyles}
+        layout
         whileTap={{ scale: 0.95 }}
         onTap={() => {
-          onClick(isExpanded ? 0 : cardRef.current?.offsetHeight || 0); // Pass the height to onClick when the card is tapped
-          flipCard(); // Flip the card
+          onClick(isExpanded ? 0 : frontCardRef.current?.offsetHeight || 0);
+          flipCard();
         }}
+        animate={{ scale: 1 }} 
+        transition={{ duration: 0.3 }} // Animation speed increased
       >
         {front}
       </motion.div>
 
       <motion.div
+        ref={backCardRef}
         style={cardStyles}
+        layout
         whileTap={{ scale: 0.95 }}
         onTap={() => {
-          onClick(isExpanded ? 0 : cardRef.current?.offsetHeight || 0); // Pass the height to onClick when the card is tapped
-          flipCard(); // Flip the card
+          onClick(isExpanded ? 0 : backCardRef.current?.offsetHeight || 0);
+          flipCard();
         }}
+        animate={{ scale: 1 }} 
+        transition={{ duration: 0.3 }} // Animation speed increased
       >
         {back}
       </motion.div>
