@@ -36,12 +36,12 @@ export default function Card({ front, back, isExpanded, onClick, position, zInde
 
   const cardStyles = {
     width: isFlipped ? '303px' : '140px',
-    maxHeight: isExpanded ? '400px' : '300px', // Back to being controlled
-    minHeight: '200px', // Back to being controlled
+    maxHeight: isExpanded ? '400px' : '300px',
+    minHeight: '200px',
     borderRadius: '15px',
     boxShadow: '0px 5px 15px rgba(0,0,0,0.1)',
     overflow: 'hidden',
-    transition: 'width 0.3s, float 0.3s', // Animation speed increased
+    transition: 'width 0.3s, float 0.3s',
     position: 'relative' as 'relative',
     padding: '10px',
     margin: '1px',
@@ -51,35 +51,39 @@ export default function Card({ front, back, isExpanded, onClick, position, zInde
 
   return (
     <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-      <motion.div
-        ref={frontCardRef}
-        style={cardStyles}
-        layout
-        whileTap={{ scale: 0.95 }}
-        onTap={() => {
-          onClick(isExpanded ? 0 : frontCardRef.current?.offsetHeight || 0);
-          flipCard();
-        }}
-        animate={{ scale: 1 }} 
-        transition={{ duration: 0.3 }} // Animation speed increased
-      >
-        {front}
-      </motion.div>
-
-      <motion.div
-        ref={backCardRef}
-        style={cardStyles}
-        layout
-        whileTap={{ scale: 0.95 }}
-        onTap={() => {
-          onClick(isExpanded ? 0 : backCardRef.current?.offsetHeight || 0);
-          flipCard();
-        }}
-        animate={{ scale: 1 }} 
-        transition={{ duration: 0.3 }} // Animation speed increased
-      >
-        {back}
-      </motion.div>
+      {!isFlipped && 
+        <motion.div
+          ref={frontCardRef}
+          style={cardStyles}
+          layout
+          whileTap={{ scale: 0.95 }}
+          onTap={() => {
+            onClick(isExpanded ? 0 : frontCardRef.current?.offsetHeight || 0);
+            flipCard();
+          }}
+          animate={{ scale: 1 }} 
+          transition={{ duration: 0.2 }} 
+        >
+          {front}
+        </motion.div>
+      }
+      
+      {isFlipped &&
+        <motion.div
+          ref={backCardRef}
+          style={cardStyles}
+          layout
+          whileTap={{ scale: 0.95 }}
+          onTap={() => {
+            onClick(isExpanded ? 0 : backCardRef.current?.offsetHeight || 0);
+            flipCard();
+          }}
+          animate={{ scale: 1 }} 
+          transition={{ duration: 0.2 }} 
+        >
+          {back}
+        </motion.div>
+      }
     </ReactCardFlip>
   );
 }
