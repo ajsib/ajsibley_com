@@ -1,6 +1,7 @@
 // CardGrid.tsx file
 import React, { useState } from 'react';
 import Card from './Card';
+import usePrevious from './hooks/hooks';
 
 interface CardProps {
   front: React.ReactElement;
@@ -19,26 +20,52 @@ export default function CardGrid({ cards }: CardGridProps) {
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
   const [leftZIndex, setLeftZIndex] = useState(1);
   const [rightZIndex, setRightZIndex] = useState(1);
+  const prevExpandedCard = usePrevious(expandedCard);
 
   // Split the cards into two separate columns
   const leftColumnCards = cards.filter((_, i) => i % 2 === 0);
   const rightColumnCards = cards.filter((_, i) => i % 2 !== 0);
 
   const handleCardClick = (index: number, position: 'left' | 'right', height: number) => {
-    if (height > 80) {  // using this method to check if the card is expanded or not is not ideal, but it works for now :)t
+    // Check if the clicked card is the currently expanded card
+    const isCurrentlyExpanded = expandedCard === index;
+
+    // If the card is already expanded and is clicked again, collapse it
+    if (isCurrentlyExpanded && height <= 80) {
+      setExpandedCard(null);
+      if (position === 'left') {
+        setTimeout(() => setLeftZIndex(1), 500);
+      } else {
+        setRightZIndex(1);
+      }
+      return; // Early return as we've already handled this scenario
+    }
+
+    // If another card was previously expanded and it's different from the currently clicked one, collapse it
+    if (prevExpandedCard !== null && prevExpandedCard !== index) {
+      collapseCard(prevExpandedCard);
+    }
+
+    // Logic for expanding a card
+    if (height > 80) {
       setExpandedCard(index);
       if (position === 'left') {
         setLeftZIndex(3);
         setRightZIndex(1);
+      } else {
+        setLeftZIndex(1);
+        setRightZIndex(3);
       }
-    } else {  // If the card is not expanded, collapse it
-      setExpandedCard(null);
-      if (position === 'left') {
-        setTimeout(() => setLeftZIndex(1), 500); // Apply a delay when collapsing the left column
-      }
-      setRightZIndex(1);
     }
+};
+
+  // Create a separate function to handle the collapsing of a card.
+  const collapseCard = (index: number) => {
+    // For now, we'll just set the state to null which should "close" the card.
+    // However, more complex logic can be added here if necessary.
+    setExpandedCard(null);
   };
+  
 
   return (
     <div style={{
@@ -48,7 +75,7 @@ export default function CardGrid({ cards }: CardGridProps) {
       width: '100%',
       margin: '0 auto',
       gap: '4px',  // to create a space of 4px between left and right column
-      position: 'relative',  //  relative position here
+      position: 'relative',  // Add a relative position here
     }}>
       <div style={{
         width: '161px',

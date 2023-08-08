@@ -22,18 +22,27 @@ export default function Card({ front, back, isExpanded, onClick, position, zInde
 
   useEffect(() => {
     let cardHeight = 0;
-
+  
     if (isFlipped) {
       cardHeight = backCardRef.current?.offsetHeight || 0;
     } else {
       cardHeight = frontCardRef.current?.offsetHeight || 0;
     }
-
-    if (isExpanded) {
+  
+    // If the card should be expanded and it isn't already flipped, flip it
+    if (isExpanded && !isFlipped) {
+      flipCard();
+    }
+  
+    // If the card shouldn't be expanded and it is flipped, unflip it
+    if (!isExpanded && isFlipped) {
+      flipCard();
+    } else if (isExpanded) {
       onClick(cardHeight);
     }
+  
   }, [isExpanded, isFlipped, onClick]);
-
+  
   const cardStyles = {
     width: isFlipped ? '303px' : '140px',
     maxHeight: isExpanded ? '400px' : '300px',
@@ -56,13 +65,13 @@ export default function Card({ front, back, isExpanded, onClick, position, zInde
           ref={frontCardRef}
           style={cardStyles}
           layout
-          whileTap={{ scale: 0.95 }}
+          whileTap={{ scale: 1 }}
           onTap={() => {
             onClick(isExpanded ? 0 : frontCardRef.current?.offsetHeight || 0);
             flipCard();
           }}
           animate={{ scale: 1 }} 
-          transition={{ duration: 0.65 }} 
+          transition={{ duration: 0.5 }} 
         >
           {front}
         </motion.div>
