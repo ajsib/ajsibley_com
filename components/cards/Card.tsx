@@ -71,7 +71,7 @@ export default function Card({ front, back, isExpanded, onClick, position, zInde
             flipCard();
           }}
           animate={{ scale: 1 }} 
-          transition={{ duration: 0.5 }} 
+          transition={{ duration: 0.0001 }} 
         >
           {front}
         </motion.div>
@@ -83,10 +83,10 @@ export default function Card({ front, back, isExpanded, onClick, position, zInde
     style={cardStyles}
     layout
     drag="x" // Allow horizontal dragging
-    dragConstraints={{ left: -50, right: 0 }} // Constrain dragging to the left by 50 pixels
+    dragConstraints={{ left: 0, right: 0 }} // Constrain dragging to the left by 50 pixels
     onDragEnd={(e, { offset, velocity }) => {
       // Check if the drag is significant enough to trigger the flip
-      if (offset.x < -50) {
+      if (offset.x < -20) {
         onClick(isExpanded ? 0 : backCardRef.current?.offsetHeight || 0);
         flipCard();
       }

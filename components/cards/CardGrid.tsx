@@ -74,49 +74,53 @@ export default function CardGrid({ cards }: CardGridProps) {
       alignItems: 'center',
       width: '100%',
       margin: '0 auto',
-      gap: '4px',  // to create a space of 4px between left and right column
-      position: 'relative',  // Add a relative position here
+      gap: '4px',
+      position: 'relative',
     }}>
       <div style={{
         width: '161px',
-        display: 'flex', 
-        gap : '1px', // to create a space of 4px between cards
-        flexDirection: 'column', 
-        position: 'relative',  //  relative position here
+        height: '100%', // Set to the fixed height
+        display: 'flex',
+        gap: '1px',
+        flexDirection: 'column',
+        position: 'relative',
         alignItems: 'flex-start',
-        zIndex: leftZIndex // expandedCard !== null && expandedCard % 2 === 0 ? 2 : 1  // If expanded card is in left column, increase its zIndex
-         }}>
+        zIndex: leftZIndex,
+        transition: 'all 0.5s ease-in-out', // Add transition
+      }}>
         {leftColumnCards.map((card, index) => (
           <Card
-          key={index}
-          front={card.front}
-          back={card.back}
-          isExpanded={expandedCard === index * 2}
-          onClick={(height: number) => handleCardClick(index * 2, 'left', height)}
-          position="left"
-          zIndex={expandedCard === index * 2 ? 3 : 1} // Corrected zIndex prop
-        />
+            key={index}
+            front={card.front}
+            back={card.back}
+            isExpanded={expandedCard === index * 2}
+            onClick={(height: number) => handleCardClick(index * 2, 'left', height)}
+            position="left"
+            zIndex={expandedCard === index * 2 ? 3 : 1}
+          />
         ))}
       </div>
       <div style={{
-         width: '161px', 
-         display: 'flex', 
-         gap : '1px', // to create a space of 4px between cards
-         flexDirection: 'column', 
-         position: 'relative',  // relative position here
-         alignItems: 'flex-end',
-         zIndex: rightZIndex //expandedCard !== null && expandedCard % 2 !== 0 ? 2 : 1  // If expanded card is in right column, increase its zIndex
-         }}>
+        width: '161px',
+        height: '100%', // Set to the fixed height
+        display: 'flex',
+        gap: '1px',
+        flexDirection: 'column',
+        position: 'relative',
+        alignItems: 'flex-end',
+        zIndex: rightZIndex,
+        transition: 'all 0.5s ease-in-out', // Add transition
+      }}>
         {rightColumnCards.map((card, index) => (
-        <Card
-          key={index}
-          front={card.front}
-          back={card.back}
-          isExpanded={expandedCard === index * 2 + 1}
-          onClick={(height: number) => handleCardClick(index * 2 + 1, 'right', height)}
-          position="right"
-          zIndex={expandedCard === index * 2 + 1 ? 3 : 3} // Corrected zIndex prop
-        />
+          <Card
+            key={index}
+            front={card.front}
+            back={card.back}
+            isExpanded={expandedCard === index * 2 + 1}
+            onClick={(height: number) => handleCardClick(index * 2 + 1, 'right', height)}
+            position="right"
+            zIndex={expandedCard === index * 2 + 1 ? 3 : 3}
+          />
         ))}
       </div>
     </div>
