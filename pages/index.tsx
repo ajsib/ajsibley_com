@@ -24,7 +24,7 @@ const WelcomeContainer = styled.div`
 `;
 
 const WelcomeHeadline = styled.h1`
-  font-size: 25px;
+  font-size: 23px;
   font-weight: bold;
   color: #333;
   margin: 15px 0;
@@ -34,9 +34,9 @@ const WelcomeHeadline = styled.h1`
 const WelcomeDescription = styled.p`
   font-size: 14px;
   color: #777;
-  margin: 2px 0;
-  text-align: justify;
-  line-height: 1.2;
+  margin: 0px 0;
+  text-align: center;
+  line-height: 1.4;
 `;
 
 
@@ -97,7 +97,7 @@ export default function Home() {
   return (
     <Container maxWidth="sm">
             <WelcomeContainer>
-        <WelcomeHeadline>Welcome to <br></br> Headline 👋</WelcomeHeadline>
+        <WelcomeHeadline>Welcome to Headline 👋</WelcomeHeadline>
         <ReactMarkdown> --- </ReactMarkdown>
         <WelcomeDescription>
           Every conversation is a blank canvas and you are the artists. <br/>
