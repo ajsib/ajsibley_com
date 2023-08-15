@@ -16,7 +16,7 @@ export default function Home() {
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
 
-  const markdown = ` # Welcome to ajsibley.com 👋
+  const markdown = ` # Welcome to Headline 👋
   ---
 
   Every conversation is a blank canvas and you are the artists.  
