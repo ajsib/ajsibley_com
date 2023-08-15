@@ -6,8 +6,7 @@ import { useState } from 'react';
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
 import CardGrid from '../components/cards/CardGrid';
-import Card from '../components/cards/Card';
-// First Card
+// Card Faces
 import F1 from '../components/cards/templates/landing/f1';
 import B1 from '../components/cards/templates/landing/b1';
 import F2 from '../components/cards/templates/landing/f2';
@@ -16,6 +15,29 @@ import F3 from '../components/cards/templates/landing/f3';
 import B3 from '../components/cards/templates/landing/b3';
 import F4 from '../components/cards/templates/landing/f4';
 import B4 from '../components/cards/templates/landing/b4';
+import styled from '@emotion/styled';
+
+
+const WelcomeContainer = styled.div`
+  font-family: 'Georgia', serif;
+  margin: 20px 0;
+`;
+
+const WelcomeHeadline = styled.h1`
+  font-size: 27px;
+  font-weight: bold;
+  color: #333;
+  margin: 15px 0;
+  text-align: center;
+`;
+
+const WelcomeDescription = styled.p`
+  font-size: 14px;
+  color: #777;
+  margin: 2px 0;
+  text-align: justify;
+  line-height: 1.2;
+`;
 
 
 export default function Home() {
@@ -74,7 +96,14 @@ export default function Home() {
 
   return (
     <Container maxWidth="sm">
-      <ReactMarkdown>{markdown}</ReactMarkdown>
+            <WelcomeContainer>
+        <WelcomeHeadline>Welcome to Headline 👋</WelcomeHeadline>
+        <ReactMarkdown> --- </ReactMarkdown>
+        <WelcomeDescription>
+          Every conversation is a blank canvas and you are the artists.
+          Why not paint a masterpiece? ✨
+        </WelcomeDescription>
+      </WelcomeContainer>
 
       {/* Login and Sign Up Buttons */}
       <Grid container justifyContent="center" spacing={2}>
