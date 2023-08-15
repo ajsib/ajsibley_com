@@ -50,7 +50,7 @@ const B3 = () => {
     <BackContainer>
       <Subtitle>📍 Connect Locally</Subtitle>
       <Content>
-        Break free from the digital bubble and immerse yourself in local happenings. From art exhibitions to workshops, find your crowd.
+        Break free from the digital bubble and immerse yourself in local happenings. From art exhibitions to street parties, find your crowd.
       </Content>
       <Footer>
         Ready to explore your city? <strong>Join now!</strong>

@@ -74,14 +74,14 @@ export default function CardGrid({ cards }: CardGridProps) {
       alignItems: 'center',
       width: '100%',
       margin: '0 auto',
-      gap: '4px',
+      gap: '8px',
       position: 'relative',
     }}>
       <div style={{
         width: '161px',
         height: '100%', // Set to the fixed height
         display: 'flex',
-        gap: '1px',
+        gap: '8px',
         flexDirection: 'column',
         position: 'relative',
         alignItems: 'flex-start',
@@ -104,7 +104,7 @@ export default function CardGrid({ cards }: CardGridProps) {
         width: '161px',
         height: '100%', // Set to the fixed height
         display: 'flex',
-        gap: '1px',
+        gap: '8px',
         flexDirection: 'column',
         position: 'relative',
         alignItems: 'flex-end',

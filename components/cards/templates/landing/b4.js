@@ -48,7 +48,7 @@ const SwipeIndicator = styled.div`
 const B4 = () => {
   return (
     <BackContainer>
-      <Subtitle>🚫 Reject Manipulation</Subtitle>
+      <Subtitle>Choose Headline!</Subtitle>
       <Content>
         We believe in meaningful engagement, not engineered addiction. Join us in a movement toward authentic social connection.
       </Content>
