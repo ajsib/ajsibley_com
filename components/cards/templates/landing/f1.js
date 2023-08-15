@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import TouchAppOutlinedIcon from '@mui/icons-material/TouchAppOutlined';
 
 const CardContainer = styled.div`
-  height: 250px;
+  height: 240px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -52,7 +52,7 @@ const F1 = () => {
         Join Headline, the social platform that focuses on local connections and meaningful interactions. 
       </Description>
       <CallToAction>
-         <TouchAppOutlinedIcon  style={{ color: '#7393B3' }}/> Tap to explore!
+         <TouchAppOutlinedIcon  style={{ color: '#7393B3' }}/> Tap in!
       </CallToAction>
     </CardContainer>
   );

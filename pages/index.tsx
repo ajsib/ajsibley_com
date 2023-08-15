@@ -10,6 +10,12 @@ import Card from '../components/cards/Card';
 // First Card
 import F1 from '../components/cards/templates/landing/f1';
 import B1 from '../components/cards/templates/landing/b1';
+import F2 from '../components/cards/templates/landing/f2';
+import B2 from '../components/cards/templates/landing/b2';
+import F3 from '../components/cards/templates/landing/f3';
+import B3 from '../components/cards/templates/landing/b3';
+import F4 from '../components/cards/templates/landing/f4';
+import B4 from '../components/cards/templates/landing/b4';
 
 
 export default function Home() {
@@ -33,6 +39,37 @@ export default function Home() {
       isExpanded: true,
       onClick: () => console.log('Card 1 clicked'),
     },
+    {
+      front: (
+        <F2 />
+      ),
+      back: (
+        <B2 />
+      ),
+      isExpanded: true,
+      onClick: () => console.log('Card 1 clicked'),
+    },
+    {
+      front: (
+        <F4 />
+      ),
+      back: (
+        <B4 />
+      ),
+      isExpanded: true,
+      onClick: () => console.log('Card 1 clicked'),
+    },
+    {
+      front: (
+        <F3 />
+      ),
+      back: (
+        <B3 />
+      ),
+      isExpanded: true,
+      onClick: () => console.log('Card 1 clicked'),
+    },
+
   ];
 
   return (

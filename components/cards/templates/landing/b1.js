@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const BackContainer = styled.div`
-  height: 200px;
+  height: 180px;
   display: flex;
   flex-direction: column;
   align-items: center;
