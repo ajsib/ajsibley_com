@@ -24,7 +24,7 @@ const WelcomeContainer = styled.div`
 `;
 
 const WelcomeHeadline = styled.h1`
-  font-size: 27px;
+  font-size: 25px;
   font-weight: bold;
   color: #333;
   margin: 15px 0;
@@ -47,7 +47,7 @@ export default function Home() {
   const markdown = ` # Welcome to Headline 👋
   ---
 
-  Every conversation is a blank canvas and you are the artists.  
+  Every conversation is a blank canvas and you are the artists.
   Why not paint a masterpiece? ✨`;
 
   const cardsData = [
@@ -97,10 +97,10 @@ export default function Home() {
   return (
     <Container maxWidth="sm">
             <WelcomeContainer>
-        <WelcomeHeadline>Welcome to Headline 👋</WelcomeHeadline>
+        <WelcomeHeadline>Welcome to <br></br> Headline 👋</WelcomeHeadline>
         <ReactMarkdown> --- </ReactMarkdown>
         <WelcomeDescription>
-          Every conversation is a blank canvas and you are the artists.
+          Every conversation is a blank canvas and you are the artists. <br/>
           Why not paint a masterpiece? ✨
         </WelcomeDescription>
       </WelcomeContainer>
