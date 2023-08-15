@@ -7,6 +7,10 @@ import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
 import CardGrid from '../components/cards/CardGrid';
 import Card from '../components/cards/Card';
+// First Card
+import F1 from '../components/cards/templates/landing/f1';
+import B1 from '../components/cards/templates/landing/b1';
+
 
 export default function Home() {
   const [showLogin, setShowLogin] = useState(false);
@@ -19,149 +23,16 @@ export default function Home() {
   Why not paint a masterpiece? ✨`;
 
   const cardsData = [
-      {
-        front: (
-          <div>
-            <h3>Front of Card 1</h3>
-            <p>
-              This is the back content of Card 1. You can add more information here to make the card larger.
-            </p>
-          </div>
-        ),
-        back: (
-          <div>
-            <h3>Back of Card 1</h3>
-            <p>
-              This is the back content of Card 1. You can add more information here to make the card larger.
-              We can do this by repeating many rows of text after many rows of text.
-              We can do this by repeating many rows of text after many rows of text.
-              We can do this by repeating many rows of text after many rows of text.
-              We can do this by repeating many rows of text after many rows of text.
-              We can do this by repeating many rows of text after many rows of text.
-
-            </p>
-          </div>
-        ),
-      isExpanded: false,
-      onClick: () => console.log('Card 1 clicked'),
-    },
-    {
-      front: <div>Front of Card 2</div>,
-      back: <div>Back of Card 2</div>,
-      isExpanded: false,
-      onClick: () => console.log('Card 2 clicked'),
-    },
     {
       front: (
-        <div>
-          <h3>Front of Card 1</h3>
-          <p>
-            This is the back content of Card 1. You can add more information here to make the card larger.
-            
-          </p>
-        </div>
+        <F1 />
       ),
       back: (
-        <div>
-          <h3>Back of Card 1</h3>
-          <p>
-            This is the back content of Card 1. You can add more information here to make the card larger.
-            We can do this by repeating many rows of text after many rows of text.
-            We can do this by repeating many rows of text after many rows of text.
-
-          </p>
-        </div>
+        <B1 />
       ),
-    isExpanded: false,
-    onClick: () => console.log('Card 1 clicked'),
-  },
-  {
-    front: (
-      <div>
-        <h3>Front of Card 1</h3>
-        <p>
-          This is the back content of Card 1. You can add more information here to make the card larger.
-          Here let me try. Yay that woirkedsdfasdf
-          
-        </p>
-      </div>
-    ),
-    back: (
-      <div>
-        <h3>Back of Card 1</h3>
-        <p>
-          This is the back content of Card 1. You can add more information here to make the card larger.
-          We can do this by repeating many rows of text after many rows of text.
-          We can do this by repeating many rows of text after many rows of text.
-
-        </p>
-      </div>
-    ),
-  isExpanded: false,
-  onClick: () => console.log('Card 1 clicked'),
-},
-    {
-      front: <div>Front of Card 3</div>,
-      back: <div>Back of Card 3</div>,
-      isExpanded: false,
+      isExpanded: true,
       onClick: () => console.log('Card 1 clicked'),
     },
-    {
-      front: <div>Front of Card 4</div>,
-      back: <div>Back of Card 4</div>,
-      isExpanded: false,
-      onClick: () => console.log('Card 2 clicked'),
-    },
-    
-    {
-      front: <div>Front of Card 5</div>,
-      back: <div>Back of Card 5</div>,
-      isExpanded: false,
-      onClick: () => console.log('Card 1 clicked'),
-    },
-    {
-      front: <div>Front of Card 6</div>,
-      back: <div>Back of Card 6</div>,
-      isExpanded: false,
-      onClick: () => console.log('Card 2 clicked'),
-    },
-    {
-      front: <div>Front of Card 7</div>,
-      back: <div>Back of Card 7</div>,
-      isExpanded: false,
-      onClick: () => console.log('Card 1 clicked'),
-    },
-    {
-      front: <div>Front of Card 8</div>,
-      back: <div>Back of Card 8</div>,
-      isExpanded: false,
-      onClick: () => console.log('Card 2 clicked'),
-    },
-    {
-      front: <div>Front of Card 9</div>,
-      back: <div>Back of Card 9</div>,
-      isExpanded: false,
-      onClick: () => console.log('Card 1 clicked'),
-    },
-    {
-      front: <div>Front of Card 10</div>,
-      back: <div>Back of Card 10</div>,
-      isExpanded: false,
-      onClick: () => console.log('Card 2 clicked'),
-    },
-    {
-      front: <div>Front of Card 11</div>,
-      back: <div>Back of Card 11</div>,
-      isExpanded: false,
-      onClick: () => console.log('Card 1 clicked'),
-    },
-    {
-      front: <div>Front of Card 12</div>,
-      back: <div>Back of Card 12</div>,
-      isExpanded: false,
-      onClick: () => console.log('Card 2 clicked'),
-    },
-
   ];
 
   return (

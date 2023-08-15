@@ -5,7 +5,7 @@ import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion';
 interface CardProps {
   front: React.ReactElement;
   back: React.ReactElement;
-  isExpanded: boolean;
+  isExpanded?: boolean;
   onClick: (height: number) => void;
   position?: 'left' | 'right';
   zIndex?: number;
@@ -46,12 +46,12 @@ export default function Card({ front, back, isExpanded, onClick, position, zInde
   const cardStyles = {
     width: isFlipped ? '303px' : '140px',
     maxHeight: isExpanded ? '400px' : '300px',
-    minHeight: '200px',
+    minHeight: '150px',
     borderRadius: '15px',
     boxShadow: '0px 5px 15px rgba(0,0,0,0.1)',
     overflow: 'hidden',
     transition: 'width 0.3s, float 0.3s',
-    position: 'relative' as 'relative',
+    position: 'static' as 'static',
     padding: '10px',
     margin: '1px',
     backgroundColor: '#fff',
@@ -71,7 +71,7 @@ export default function Card({ front, back, isExpanded, onClick, position, zInde
             flipCard();
           }}
           animate={{ scale: 1 }} 
-          transition={{ duration: 0.0001 }} 
+          transition={{ duration: 0.25 }} 
         >
           {front}
         </motion.div>
