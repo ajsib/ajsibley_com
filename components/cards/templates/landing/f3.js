@@ -46,7 +46,7 @@ const CallToAction = styled.div`
 const F3 = () => {
   return (
     <CardContainer>
-      <Headline>Discover Local Events 🎟️</Headline>
+      <Headline>Discover Local Events 🥳</Headline>
       <Separator />
       <Description>
         Unlock events that resonate with you and meet like-minded people.

@@ -109,6 +109,7 @@ export default function Home() {
       
       {showLogin && <LoginForm />}
       {showRegister && <RegisterForm />}
+      <Box height={15} />
       <CardGrid cards={cardsData} />
     </Container>
   );

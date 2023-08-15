@@ -44,11 +44,11 @@ export default function Card({ front, back, isExpanded, onClick, position, zInde
   }, [isExpanded, isFlipped, onClick]);
   
   const cardStyles = {
-    width: isFlipped ? '303px' : '140px',
+    width: isFlipped ? '308px' : '140px',
     maxHeight: isExpanded ? '400px' : '300px',
     minHeight: '150px',
     borderRadius: '15px',
-    boxShadow: '0px 5px 15px rgba(0,0,0,0.1)',
+    boxShadow: '0px 5px 15px rgba(0,0,0,0.15)',
     overflow: 'hidden',
     transition: 'width 0.3s, float 0.3s',
     position: 'static' as 'static',
@@ -65,13 +65,23 @@ export default function Card({ front, back, isExpanded, onClick, position, zInde
           ref={frontCardRef}
           style={cardStyles}
           layout
-          whileTap={{ scale: 1 }}
+          drag="x" // Allow horizontal dragging for the front card
+          dragConstraints={{ left: 0, right: 0 }} // Constrain dragging to the left by 50 pixels
+          onDragEnd={(e, { offset, velocity }) => {
+            // Check if the drag is significant enough to trigger the flip
+            if (offset.x < -20) {
+              onClick(isExpanded ? 0 : frontCardRef.current?.offsetHeight || 0);
+              flipCard();
+            }
+          }}
+          whileDrag={{ scale: 0.95 }} // Modify appearance during dragging
+          animate={{ x: 0 }} // Snap back to the original position if not dragged far enough
+          transition={{ duration: 0.1, type: 'spring', stiffness: 500, damping: 27 }} // Transition to make the snap effect
+          whileTap={{ scale: 1 }} 
           onTap={() => {
             onClick(isExpanded ? 0 : frontCardRef.current?.offsetHeight || 0);
             flipCard();
           }}
-          animate={{ scale: 1 }} 
-          transition={{ duration: 0.25 }} 
         >
           {front}
         </motion.div>
@@ -97,7 +107,7 @@ export default function Card({ front, back, isExpanded, onClick, position, zInde
   >
     {back}
   </motion.div>
-}
+} 
 
     </ReactCardFlip>
   );
