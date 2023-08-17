@@ -3,9 +3,8 @@ import { Container, LinearProgress } from '@mui/material';
 import CardGrid from '../../components/cards/CardGrid';
 import FrontCard1 from './profile/f1';
 import BackCard1 from './profile/b1';
-// import FrontCard2 from './profile/f2';
-// import BackCard2 from './profile/b2';
-
+import FrontCard2 from './profile/f2'; // front card 2
+import BackCard2 from './profile/b2';  // back card 2
 
 interface CardData {
   front: JSX.Element;
@@ -33,26 +32,42 @@ export default function ProfileSetup() {
     });
   };
 
-  const isRequiredFilled = cardFields.name !== '' && cardFields.university !== '';
-  const isOptionalFilled = cardFields.age !== '' && cardFields.major !== '';
+  const card1Fields = {
+    name: cardFields.name,
+    age: cardFields.age,
+    major: cardFields.major,
+    university: cardFields.university
+  };
+
+  const card2Fields = {
+    hobbies: cardFields.hobbies
+  };
+
+  const isRequiredFilled1 = cardFields.name !== '' && cardFields.university !== '';
+  const isOptionalFilled1 = cardFields.age !== '' && cardFields.major !== '';
+  const isRequiredFilled2 = cardFields.hobbies !== '';
 
   const cardsData: CardData[] = [
     {
-      front: <FrontCard1 requiredFilled={isRequiredFilled} optionalFilled={isOptionalFilled} />,
-      back: <BackCard1 onFieldChange={onFieldChange} existingFields={cardFields} />, // Updated this line
-      isExpanded: false, // Manage this state to control whether the card is expanded or not
+      front: <FrontCard1 requiredFilled={isRequiredFilled1} optionalFilled={isOptionalFilled1} />,
+      back: <BackCard1 onFieldChange={onFieldChange} existingFields={card1Fields} />,
+      isExpanded: false,
       onClick: () => console.log('Card 1 clicked'),
-      requiredFilled: isRequiredFilled,
-      optionalFilled: isOptionalFilled,
+      requiredFilled: isRequiredFilled1,
+      optionalFilled: isOptionalFilled1,
     },
+    {
+      front: <FrontCard2 requiredFilled={isRequiredFilled2} />,
+      back: <BackCard2 onFieldChange={onFieldChange} existingFields={card2Fields} />,
+      isExpanded: false,
+      onClick: () => console.log('Card 2 clicked'),
+      requiredFilled: isRequiredFilled2,
+    }
   ];
-  
-  
 
   const [cards, setCards] = useState(cardsData);
 
   useEffect(() => {
-    // This will run whenever cardFields changes
     setCards(cardsData);
   }, [cardFields]); 
 
@@ -60,7 +75,7 @@ export default function ProfileSetup() {
 
   return (
     <Container maxWidth="lg">
-      <h1 style={{ fontFamily: 'Georgia', color: '#333'}}>Profile Setup</h1>
+      <h1 style={{ fontFamily: 'Georgia', color: '#333' }}>Profile Setup</h1>
       <LinearProgress
         variant="determinate"
         value={progress}

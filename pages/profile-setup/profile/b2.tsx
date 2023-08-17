@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
-import { TextField, Button, Chip } from '@mui/material';
+import { TextField, Chip } from '@mui/material';
 
 const CardContainer = styled.div`
   padding: 16px;
@@ -8,12 +8,6 @@ const CardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   font-family: 'Georgia', serif;
-`;
-
-const FieldContainer = styled.div`
-  margin-top: 10px;
-  margin-bottom: 10px;
-  width: 100%;
 `;
 
 const ChipContainer = styled.div`
@@ -50,18 +44,30 @@ const interestsOptions = [
   { label: 'Cooking 🍳', value: 'Cooking' }
 ];
 
-const BackCard2 = ({ onFieldChange }) => {
-  const [selectedInterests, setSelectedInterests] = useState([]);
-  const [additionalDetails, setAdditionalDetails] = useState('');
+interface BackCard2Props {
+  onFieldChange: (field: string, value: string) => void;
+  existingFields: { hobbies: string };
+}
 
-  const handleInterestClick = (interest) => {
-    if (selectedInterests.includes(interest.value)) {
-      setSelectedInterests(selectedInterests.filter(i => i !== interest.value));
+const BackCard2: React.FC<BackCard2Props> = ({ onFieldChange, existingFields }) => {
+  const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
+
+  useEffect(() => {
+    const hobbiesArray = existingFields.hobbies ? existingFields.hobbies.split(', ') : [];
+    setSelectedInterests(hobbiesArray);
+  }, [existingFields.hobbies]);
+
+  const handleInterestClick = (interest: { label: string; value: string }) => {
+    let newInterests = [...selectedInterests];
+    if (newInterests.includes(interest.value)) {
+      newInterests = newInterests.filter((i) => i !== interest.value);
     } else {
-      setSelectedInterests([...selectedInterests, interest.value]);
+      newInterests.push(interest.value);
     }
-    onFieldChange('interests', selectedInterests.join(', '));
+    setSelectedInterests(newInterests);
+    onFieldChange('hobbies', newInterests.join(', '));
   };
+
 
   return (
     <CardContainer>
@@ -78,22 +84,6 @@ const BackCard2 = ({ onFieldChange }) => {
           />
         ))}
       </ChipContainer>
-      <FieldContainer>
-        <TextField
-          fullWidth
-          label="The floor is yours!"
-          variant="outlined"
-          placeholder="e.g. Interested in AI, Robotics ..."
-          value={additionalDetails}
-          onChange={(e) => {
-            setAdditionalDetails(e.target.value);
-            onFieldChange('details', e.target.value);
-          }}
-        />
-      </FieldContainer>
-      <Button variant="contained" color="primary" onClick={() => { /* Code to submit and update the front card */ }}>
-        Save
-      </Button>
     </CardContainer>
   );
 };

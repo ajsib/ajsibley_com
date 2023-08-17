@@ -15,6 +15,14 @@ const FieldContainer = styled.div`
   width: 100%;
 `;
 
+const Footer = styled.p`
+  font-size: 14px;
+  font-weight: normal;
+  color: #777;
+  margin: 15px 0;
+  text-align: justify;
+`;
+
 interface BackCard1Props {
   onFieldChange: (field: string, value: string) => void;
   existingFields: {
@@ -30,7 +38,7 @@ const BackCard1: React.FC<BackCard1Props> = ({ onFieldChange, existingFields }) 
     onFieldChange(field, value);
   };
 
-  const universityOptions = ["Queen's 🇷🇴", "Other"];
+  const universityOptions = ["Queen's 🇷🇴", "Western", "Carleton", "uOttawa", "Guelph", "Laurier", "Waterloo", "McMaster"];
   const majorOptions = ["ArtSci", "Engineering", "Commerce", "CompSci", "Kinesiology", "Life Sci", "Health Sci", "Nursing", "Other"];
 
   return (
@@ -78,6 +86,10 @@ const BackCard1: React.FC<BackCard1Props> = ({ onFieldChange, existingFields }) 
           renderInput={(params) => <TextField {...params} label="University" variant="outlined" />}
         />
       </FieldContainer>
+    
+    <Footer> Swipe left when complete 👆⬅️ 📱 </Footer>
+
+
 
     </CardContainer>
   );

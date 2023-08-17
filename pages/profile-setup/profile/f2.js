@@ -45,10 +45,9 @@ const CallToAction = styled.div`
   color: #333;
 `;
 
-const FrontCard2 = ({ requiredFilled, optionalFilled }) => {
+const FrontCard2 = ({ requiredFilled }) => {
   const getCardStatus = () => {
     if (!requiredFilled) return { icon: <ErrorOutlineIcon style={{ color: 'red' }} />, text: 'Incomplete' };
-    if (requiredFilled && !optionalFilled) return { icon: <WarningRoundedIcon style={{ color: 'green' }} />, text: 'Add Optional' };
     return { icon: <DoneAllIcon style={{ color: 'blue' }} />, text: 'Complete' }; // All fields filled
   };
 
