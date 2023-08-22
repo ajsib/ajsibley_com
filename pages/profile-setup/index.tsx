@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container, LinearProgress, Collapse } from '@mui/material';
-import BasicInfo from './profileSections/BasicInfo';
-import Hobbies from './profileSections/Hobbies';
+import BasicInfo from '../../components/profile/profileSections/BasicInfo';
+import Hobbies from '../../components/profile/profileSections/Hobbies';
 
 interface Fields {
   name?: string;
