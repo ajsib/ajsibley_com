@@ -1,115 +1,64 @@
-import React, { useState, useEffect } from 'react';
-import { Container, LinearProgress } from '@mui/material';
-import CardGrid from '../../components/cards/CardGrid';
-import FrontCard1 from './profile/f1';
-import BackCard1 from './profile/b1';
-import FrontCard2 from './profile/f2'; // front card 2
-import BackCard2 from './profile/b2';  // back card 2
+import React, { useState } from 'react';
+import { Container, LinearProgress, Collapse } from '@mui/material';
+import BasicInfo from './profileSections/BasicInfo';
+import Hobbies from './profileSections/Hobbies';
 
-interface CardData {
-  front: JSX.Element;
-  back: JSX.Element;
-  isExpanded: boolean;
-  onClick: () => void;
-  requiredFilled?: boolean;
-  optionalFilled?: boolean;
+interface Fields {
+  name?: string;
+  age?: string;
+  major?: string;
+  university?: string;
+  hobbies?: string;
 }
 
 export default function ProfileSetup() {
-  const [cardFields, setCardFields] = useState({
-    name: '',
-    age: '',
-    major: '',
-    university: '',
-    hobbies: '',
-    // ... other fields as needed
-  });
+  const [existingFields, setExistingFields] = useState<Fields>({});
+  const [basicInfoProgress, setBasicInfoProgress] = useState<'red' | 'green' | 'blue'>('red');
+  const [hobbiesProgress, setHobbiesProgress] = useState<'red' | 'green' | 'blue'>('red');
+  const [isBasicInfoExpanded, setIsBasicInfoExpanded] = useState(true);
+  const [isHobbiesExpanded, setIsHobbiesExpanded] = useState(true);
 
-  const onFieldChange = (field: string, value: string) => {
-    setCardFields({
-      ...cardFields,
-      [field]: value
-    });
-  };
-
-  const card1Fields = {
-    name: cardFields.name,
-    age: cardFields.age,
-    major: cardFields.major,
-    university: cardFields.university
-  };
-
-  const card2Fields = {
-    hobbies: cardFields.hobbies
-  };
-
-  const isRequiredFilled1 = cardFields.name !== '' && cardFields.university !== '';
-  const isOptionalFilled1 = cardFields.age !== '' && cardFields.major !== '';
-  const isRequiredFilled2 = cardFields.hobbies !== '';
-
-  const cardsData: CardData[] = [
-    {
-      front: <FrontCard1 requiredFilled={isRequiredFilled1} optionalFilled={isOptionalFilled1} />,
-      back: <BackCard1 onFieldChange={onFieldChange} existingFields={card1Fields} />,
-      isExpanded: false,
-      onClick: () => console.log('Card 1 clicked'),
-      requiredFilled: isRequiredFilled1,
-      optionalFilled: isOptionalFilled1,
-    },
-    {
-      front: <FrontCard2 requiredFilled={isRequiredFilled2} />,
-      back: <BackCard2 onFieldChange={onFieldChange} existingFields={card2Fields} />,
-      isExpanded: false,
-      onClick: () => console.log('Card 2 clicked'),
-      requiredFilled: isRequiredFilled2,
+  const handleBasicInfoFieldChange = (updatedFields: Fields, progressColor: 'red' | 'green' | 'blue') => {
+    setExistingFields({ ...existingFields, ...updatedFields });
+    setBasicInfoProgress(progressColor);
+    if (progressColor === 'blue') {
+      setIsBasicInfoExpanded(false);
     }
-  ];
+  };
 
-  const [cards, setCards] = useState(cardsData);
-
-  useEffect(() => {
-    setCards(cardsData);
-  }, [cardFields]); 
-
-  const { progress, color } = calculateProgress(cards);
+  const handleHobbiesFieldChange = (updatedFields: Fields, progressColor: 'red' | 'green' | 'blue') => {
+    setExistingFields({ ...existingFields, ...updatedFields });
+    setHobbiesProgress(progressColor);
+    if (progressColor === 'blue') {
+      setIsHobbiesExpanded(false);
+    }
+  };
 
   return (
     <Container maxWidth="lg">
-      <h1 style={{ fontFamily: 'Georgia', color: '#333' }}>Profile Setup</h1>
+      <h1 style={{ fontFamily: 'Georgia', color: '#333' }}>Your Profile</h1>
+
+      <h2>Back to the Basics</h2>
       <LinearProgress
         variant="determinate"
-        value={progress}
-        style={{ backgroundColor: color, height: '8px' }}
+        value={basicInfoProgress === 'blue' ? 100 : basicInfoProgress === 'green' ? 50 : 0}
+        style={{ backgroundColor: basicInfoProgress, height: '8px', cursor: 'pointer' }}
+        onClick={() => setIsBasicInfoExpanded(!isBasicInfoExpanded)}
       />
-      <CardGrid cards={cards} />
+      <Collapse in={isBasicInfoExpanded}>
+        <BasicInfo existingFields={existingFields} handleFieldChange={handleBasicInfoFieldChange} />
+      </Collapse>
+
+      <h2>Your Hobbies</h2>
+      <LinearProgress
+        variant="determinate"
+        value={hobbiesProgress === 'blue' ? 100 : hobbiesProgress === 'green' ? 50 : 0}
+        style={{ backgroundColor: hobbiesProgress, height: '8px', cursor: 'pointer' }}
+        onClick={() => setIsHobbiesExpanded(!isHobbiesExpanded)}
+      />
+      <Collapse in={isHobbiesExpanded}>
+        <Hobbies existingFields={existingFields} handleFieldChange={handleHobbiesFieldChange} />
+      </Collapse>
     </Container>
   );
 }
-
-const calculateProgress = (cards: CardData[]) => {
-  let completedRequiredCards = 0;
-  let completedOptionalCards = 0;
-
-  cards.forEach(card => {
-    if (card.requiredFilled) {
-      completedRequiredCards++;
-    }
-    if (card.optionalFilled) {
-      completedOptionalCards++;
-    }
-  });
-
-  const totalCards = cards.length;
-  const requiredCompletionPercentage = (completedRequiredCards / totalCards) * 100;
-  const optionalCompletionPercentage = (completedOptionalCards / totalCards) * 100;
-  const overallCompletionPercentage = (requiredCompletionPercentage + optionalCompletionPercentage) / 2;
-
-  let color: 'red' | 'green' | 'blue' = 'red';
-  if (overallCompletionPercentage >= 100) {
-    color = 'blue';
-  } else if (requiredCompletionPercentage === 100) {
-    color = 'green';
-  }
-
-  return { progress: overallCompletionPercentage, color };
-};
