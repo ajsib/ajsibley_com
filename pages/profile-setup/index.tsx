@@ -80,7 +80,7 @@ const ProfileSetup = () => {
       <ReactMarkdown> --- </ReactMarkdown>
       <WelcomeDescription>
         Here we will get you started with a basic Profile! <br />
-        Don't worry, you can always edit your profile later. <br />
+        Do not worry, you can always edit your profile later. <br />
       </WelcomeDescription>
       <CardGrid cards={cards} />
       <SubmitButtonContainer>
