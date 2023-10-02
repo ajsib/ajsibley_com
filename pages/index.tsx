@@ -5,16 +5,16 @@ import ReactMarkdown from 'react-markdown';
 import { useState } from 'react';
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
-import CardGrid from '../components/cards/CardGrid';
+import CardGrid from '../components/CardGrid';
 // Card Faces
-import F1 from '../components/cards/templates/landing/f1';
-import B1 from '../components/cards/templates/landing/b1';
-import F2 from '../components/cards/templates/landing/f2';
-import B2 from '../components/cards/templates/landing/b2';
-import F3 from '../components/cards/templates/landing/f3';
-import B3 from '../components/cards/templates/landing/b3';
-import F4 from '../components/cards/templates/landing/f4';
-import B4 from '../components/cards/templates/landing/b4';
+import F1 from '../components/cards/landing/f1';
+import B1 from '../components/cards/landing/b1';
+import F2 from '../components/cards/landing/f2';
+import B2 from '../components/cards/landing/b2';
+import F3 from '../components/cards/landing/f3';
+import B3 from '../components/cards/landing/b3';
+import F4 from '../components/cards/landing/f4';
+import B4 from '../components/cards/landing/b4';
 import styled from '@emotion/styled';
 
 
@@ -58,8 +58,6 @@ export default function Home() {
       back: (
         <B1 />
       ),
-      isExpanded: true,
-      onClick: () => console.log('Card 1 clicked'),
     },
     {
       front: (
@@ -68,8 +66,6 @@ export default function Home() {
       back: (
         <B2 />
       ),
-      isExpanded: true,
-      onClick: () => console.log('Card 1 clicked'),
     },
     {
       front: (
@@ -78,8 +74,6 @@ export default function Home() {
       back: (
         <B4 />
       ),
-      isExpanded: true,
-      onClick: () => console.log('Card 1 clicked'),
     },
     {
       front: (
@@ -88,8 +82,6 @@ export default function Home() {
       back: (
         <B3 />
       ),
-      isExpanded: true,
-      onClick: () => console.log('Card 1 clicked'),
     },
 
   ];

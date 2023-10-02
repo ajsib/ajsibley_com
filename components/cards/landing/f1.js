@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import TouchAppOutlinedIcon from '@mui/icons-material/TouchAppOutlined';
 
 const CardContainer = styled.div`
-  height: 160px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -32,7 +31,7 @@ const Description = styled.p`
   font-size: 14px;
   color: #777;
   margin: 2px 0;
-  text-align: center;
+  text-align: justify;
   line-height: 1.2;
 `;
 
@@ -43,17 +42,19 @@ const CallToAction = styled.div`
   color: #333;
 `;
 
-const F2 = () => {
+const F1 = () => {
   return (
     <CardContainer>
-      <Headline>Know Your Followers?</Headline>
+      <Headline>Reconnect with Real Communities</Headline>
       <Separator />
-      <Description>Find real connections with Headline. 🤝</Description>
+      <Description>
+        Join Headline, the social platform that focuses on local connections and meaningful interactions. 
+      </Description>
       <CallToAction>
-         <TouchAppOutlinedIcon style={{ color: '#7393B3' }} /> Tap in!
+         <TouchAppOutlinedIcon  style={{ color: '#7393B3' }}/> Tap in!
       </CallToAction>
     </CardContainer>
   );
 };
 
-export default F2;
+export default F1;

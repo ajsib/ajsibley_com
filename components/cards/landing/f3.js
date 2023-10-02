@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt'; // Importing thumb-down icon
+import ExploreIcon from '@mui/icons-material/Explore'; // Importing the explore icon
 
 const CardContainer = styled.div`
-  height: 210px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -43,19 +42,19 @@ const CallToAction = styled.div`
   color: #333;
 `;
 
-const F4 = () => {
+const F3 = () => {
   return (
     <CardContainer>
-      <Headline>Say No to Clickbait 🚫</Headline>
+      <Headline>Discover Local Events 🥳</Headline>
       <Separator />
       <Description>
-        Tired of social media manipulating you with engineered content?
+        Unlock events that resonate with you and meet like-minded people.
       </Description>
       <CallToAction>
-         <ThumbDownAltIcon style={{ color: '#D9534F' }}/> Choose authenticity!
+         <ExploreIcon style={{ color: '#7393B3' }}/> Find an event now!
       </CallToAction>
     </CardContainer>
   );
 };
 
-export default F4;
+export default F3;

@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import TouchAppOutlinedIcon from '@mui/icons-material/TouchAppOutlined';
+import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt'; // Importing thumb-down icon
 
 const CardContainer = styled.div`
-  height: 240px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -43,19 +42,19 @@ const CallToAction = styled.div`
   color: #333;
 `;
 
-const F1 = () => {
+const F4 = () => {
   return (
     <CardContainer>
-      <Headline>Reconnect with Real Communities</Headline>
+      <Headline>Say No to Clickbait 🚫</Headline>
       <Separator />
       <Description>
-        Join Headline, the social platform that focuses on local connections and meaningful interactions. 
+        Tired of social media manipulating you with engineered content?
       </Description>
       <CallToAction>
-         <TouchAppOutlinedIcon  style={{ color: '#7393B3' }}/> Tap in!
+         <ThumbDownAltIcon style={{ color: '#D9534F' }}/> Choose authenticity!
       </CallToAction>
     </CardContainer>
   );
 };
 
-export default F1;
+export default F4;

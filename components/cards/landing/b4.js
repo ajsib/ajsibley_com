@@ -2,7 +2,6 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const BackContainer = styled.div`
-  height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,19 +44,19 @@ const SwipeIndicator = styled.div`
   padding-right: 5px;
 `;
 
-const B3 = () => {
+const B4 = () => {
   return (
     <BackContainer>
-      <Subtitle>📍 Connect Locally</Subtitle>
+      <Subtitle>Choose Headline!</Subtitle>
       <Content>
-        Break free from the digital bubble and immerse yourself in local happenings. From art exhibitions to street parties, find your crowd.
+        We believe in meaningful engagement, not engineered addiction. Join us in a movement toward authentic social connection.
       </Content>
       <Footer>
-        Ready to explore your city? <strong>Join now!</strong>
+        Ready to experience real social media? <strong>Join now!</strong>
       </Footer>
       <SwipeIndicator>Swipe left to collapse ↩️</SwipeIndicator>
     </BackContainer>
   );
 };
 
-export default B3;
+export default B4;

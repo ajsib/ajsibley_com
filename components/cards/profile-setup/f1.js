@@ -1,9 +1,9 @@
+// ./pages/profile-setup/cards/b1.js
 import React from 'react';
 import styled from '@emotion/styled';
-import ExploreIcon from '@mui/icons-material/Explore'; // Importing the explore icon
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const CardContainer = styled.div`
-  height: 250px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -43,19 +43,22 @@ const CallToAction = styled.div`
   color: #333;
 `;
 
-const F3 = () => {
+const BasicInfoPage = () => {
   return (
     <CardContainer>
-      <Headline>Discover Local Events 🥳</Headline>
+      <Headline>Basic Info</Headline>
       <Separator />
       <Description>
-        Unlock events that resonate with you and meet like-minded people.
+        Name*: <br />
+        Program*:  <br />
+        Year of Study*: <br />
+        Bio*:
       </Description>
       <CallToAction>
-         <ExploreIcon style={{ color: '#7393B3' }}/> Find an event now!
+        <ArrowForwardIcon style={{ color: '#7393B3' }} /> Swipe Left to Complete!
       </CallToAction>
     </CardContainer>
   );
 };
 
-export default F3;
+export default BasicInfoPage;

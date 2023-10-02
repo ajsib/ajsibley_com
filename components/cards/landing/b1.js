@@ -2,7 +2,6 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const BackContainer = styled.div`
-  height: 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,19 +44,19 @@ const SwipeIndicator = styled.div`
   padding-right: 5px;
 `;
 
-const B2 = () => {
+const B1 = () => {
   return (
     <BackContainer>
-      <Subtitle>🔓 Unlock Real Connections</Subtitle>
+      <Subtitle>🎨 Craft Your Headline</Subtitle>
       <Content>
-        Like a headline? Swipe Right to Unlock Friendship! 🎉 Gain Exclusive Access to Profiles with Mutual Unlocks.
+        Words pack a punch! Your creativity matters, not pictures. Connect, engage, be real. 🌟
       </Content>
       <Footer>
-        Ready to unlock meaningful relationships? <strong>Join now!</strong>
+        Ready to stand out? <strong>Join now!</strong>
       </Footer>
       <SwipeIndicator>Swipe left to collapse ↩️</SwipeIndicator>
     </BackContainer>
   );
 };
 
-export default B2;
+export default B1;
