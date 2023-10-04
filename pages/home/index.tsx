@@ -20,7 +20,7 @@ export default function Home() {
     setIsLoading(true);
     try {
       console.log("Fetching data...");
-      const response = await axios.get(`http://localhost:3000/api/posts/paginated?start=${start}&limit=${limit}`);
+      const response = await axios.get(`https://ajsibleyback-310003c917de.herokuapp.com/api/posts/paginated?start=${start}&limit=${limit}`);
       const { posts } = response.data;
       console.log("API response: ", JSON.stringify(posts))
       if (posts.length < limit) setHasMore(false); // NEW

@@ -59,7 +59,7 @@ const NewPost = () => {
       };
   
       // Make the axios post request
-      const response = await axios.post('http://localhost:3000/api/posts/', postData, config);
+      const response = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/api/posts/', postData, config);
       
       console.log('Successfully posted:', response.data);
   
