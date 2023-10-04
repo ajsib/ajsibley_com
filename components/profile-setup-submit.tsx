@@ -24,7 +24,7 @@ export const submitProfile = async (formData: FormData) => {
       }
     };
 
-    const response = await axios.post('http://localhost:3000/api/profile/create', formData, config);
+    const response = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/api/profile/create', formData, config);
 
     // Check if the profile was created successfully
     if (response.data.message === 'Profile created successfully') {

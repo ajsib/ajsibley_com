@@ -86,7 +86,7 @@ const ProfileSetup = () => {
       <SubmitButtonContainer>
         {checkRequiredFields() ? (
           <Button variant="contained" color="primary" onClick={() => submitProfile(formData)}>
-            Build Profile
+            Submit
           </Button>
         ) : (
           <Typography variant="body1" color="error">
