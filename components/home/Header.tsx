@@ -88,7 +88,7 @@ const Header: React.FC = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [lastScrollTop]);
+  }, [lastScrollTop, handleScroll]);
 
   return (
     <HeaderContainer scrolled={scrolled} showHeader={showHeader}>
@@ -98,7 +98,7 @@ const Header: React.FC = () => {
         ) : (
           <>
             <RegularGreeting>{`${getGreeting()},`}</RegularGreeting>
-            <SimplifiedContainer>here are today's headlines.</SimplifiedContainer>
+            <SimplifiedContainer>here are today&apos;s headlines.</SimplifiedContainer>
           </>
         )}
       </HeaderContent>

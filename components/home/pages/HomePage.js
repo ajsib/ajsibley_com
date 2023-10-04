@@ -58,7 +58,7 @@ const Home = ({ cardsData, loadMoreCards, isLoading, hasMore }) => {
     } else {
       setCards(createCards(cardsData));
     }
-  }, [cardsData]);
+  }, [cardsData, isLoading, hasMore, loadMoreCards]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);

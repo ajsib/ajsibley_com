@@ -77,7 +77,7 @@ const NewPost = () => {
         back: <T1B headline={header} author={author} program={program} yearOfStudy={yearOfStudy} description={description} />
       }
     ]);
-  }, [header, hook, callToAction, emoji, description]);
+  }, [header, hook, callToAction, emoji, description, author, program, yearOfStudy]);
 
   return (
     <Container maxWidth="lg">
