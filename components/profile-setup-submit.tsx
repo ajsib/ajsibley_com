@@ -24,11 +24,20 @@ export const submitProfile = async (formData: FormData) => {
       }
     };
 
-    const response = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/api/profile/create', formData, config);
+    const response = await axios.post('http://localhost:3000/api/profile/create', formData, config);
 
+    // Check if the profile was created successfully
     if (response.data.message === 'Profile created successfully') {
-      // Perform some action, maybe navigate the user to the home page
-        Router.push('/home');
+      // Store the new profile information in localStorage
+      if (response.data.profile) {
+        localStorage.setItem('profile', JSON.stringify(response.data.profile));
+      } else {
+        // If the profile is null or doesn't exist, set to an empty object
+        localStorage.setItem('profile', JSON.stringify({}));
+      }
+
+      // Navigate the user to the home page
+      Router.push('/home');
     }
   } catch (error) {
     console.error('Error submitting profile:', error);

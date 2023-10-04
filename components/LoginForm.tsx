@@ -14,42 +14,48 @@ export default function LoginForm() {
 
   const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-
+  
     if (!usernameOrEmail || !password) {
       setErrorMessage('Please enter all fields.');
       return;
     }
-
+  
     try {
-      const response = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/api/user/login', {
-        usernameOrEmail, // Use the updated field name for username or email
+      const response = await axios.post('http://localhost:3000/api/user/login', {
+        usernameOrEmail,
         password
       }, {
         headers: {
           'Content-Type': 'application/json'
         }
       });
-
+  
       const { data } = response;
-
+  
       localStorage.setItem('token', data.token);
-
-      const config = {
-        headers: {
-          'Authorization': 'Bearer ' + data.token
-        }
-      };
-
-      const userResponse = await axios.get('https://ajsibleyback-310003c917de.herokuapp.com/api/user/user', config);
-      console.log(userResponse.data);
-
-      setUsernameOrEmail(''); // Clear the input field after successful login
+      
+      // Store the profile information if it exists
+      if (data.profile) {
+        localStorage.setItem('profile', JSON.stringify(data.profile));
+      } else {
+        // Set to an empty object if the profile is null or doesn't exist
+        localStorage.setItem('profile', JSON.stringify({}));
+      }
+  
+      setUsernameOrEmail(''); // Clear the input field
       setPassword('');
       setErrorMessage('');
-      window.location.href = '/home'; // Redirect to the home page after successful login
-    } catch (error : any) {
+      window.location.href = '/home'; // Redirect to home
+    } catch (error: any) {
       console.log(error);
-      setErrorMessage(error.response.data.message); // Set the error message received from the server
+    
+      if (error.response && error.response.data && error.response.data.message) {
+        setErrorMessage(error.response.data.message); // Set error message from server
+      } else if (error.message) {
+        setErrorMessage(error.message); // Network errors, timeout, etc.
+      } else {
+        setErrorMessage('An unknown error occurred.'); // Catch-all
+      }
     }
   };
 
