@@ -12,7 +12,7 @@ export default function Card({ front, back,  openFullScreenCard }: CardProps) {
   const frontCardRef = useRef<HTMLDivElement>(null);
 
   const handleSwipeRight = () => {
-    openFullScreenCard(back);  // <--- This method should come from CardGrid
+    openFullScreenCard(back);   // <--- This method should come from CardGrid
   }
 
   // Remove the minHeight property and add padding for aesthetic spacing
