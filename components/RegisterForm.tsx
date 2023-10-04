@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
+import apiBaseUrl from '../utils/apiConfig'
 
 export default function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -27,7 +28,7 @@ export default function RegisterForm() {
 
     try {
       // Register the user
-      const response = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/api/user/register', {
+      const response = await axios.post(`${apiBaseUrl}/api/user/register`, {
         username,
         emailPhone,
         password
@@ -40,7 +41,7 @@ export default function RegisterForm() {
       console.log(response.data);
 
       // If registration is successful, log in the user
-      const loginResponse = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/api/user/login', {
+      const loginResponse = await axios.post(`${apiBaseUrl}/api/user/login`, {
         usernameOrEmail: emailPhone, // You can use either email or username to log in
         password
       }, {

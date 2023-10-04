@@ -6,6 +6,8 @@ import { TextField, Container, Box, Autocomplete, Button, CircularProgress } fro
 import emojiData from './emojis.json';
 import SendIcon from '@mui/icons-material/Send';
 import axios from 'axios';
+import { getUserInfo } from '../../../utils/userProfile/UserInfo';
+import apiBaseUrl from '../../../utils/apiConfig';
 
 const NewPost = () => {
   console.log("Rendering NewPost"); // Debug line
@@ -16,11 +18,12 @@ const NewPost = () => {
   const [emoji, setEmoji] = useState("👍");
   const [description, setDescription] = useState("");
 
-  const storedProfile = JSON.parse(localStorage.getItem('profile') || '{}');
-
-  const author = storedProfile.name;
-  const program = storedProfile.program;
-  const yearOfStudy = storedProfile.yearOfStudy;
+  const { profile, user } = getUserInfo();
+  const author = profile.name;
+  const program = profile.program;
+  const yearOfStudy = profile.yearOfStudy;
+  
+  // Can add any others here 
 
   const [loading, setLoading] = useState(false);
 
@@ -59,7 +62,7 @@ const NewPost = () => {
       };
   
       // Make the axios post request
-      const response = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/api/posts/', postData, config);
+      const response = await axios.post(`${apiBaseUrl}/api/posts/`, postData, config);
       
       console.log('Successfully posted:', response.data);
   

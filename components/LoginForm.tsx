@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import axios from 'axios';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import apiBaseUrl from '../utils/apiConfig'
 
 export default function LoginForm() {
   const route = useRouter();
@@ -21,7 +22,8 @@ export default function LoginForm() {
     }
   
     try {
-      const response = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/api/user/login', {
+      console.log(apiBaseUrl)
+      const response = await axios.post(`${apiBaseUrl}/api/user/login`, {
         usernameOrEmail,
         password
       }, {

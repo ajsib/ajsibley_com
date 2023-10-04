@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Router from 'next/router';
+import apiBaseUrl from '../utils/apiConfig'
 
 interface FormData {
   name: string;
@@ -24,7 +25,7 @@ export const submitProfile = async (formData: FormData) => {
       }
     };
 
-    const response = await axios.post('https://ajsibleyback-310003c917de.herokuapp.com/api/profile/create', formData, config);
+    const response = await axios.post(`${apiBaseUrl}/api/profile/create`, formData, config);
 
     // Check if the profile was created successfully
     if (response.data.message === 'Profile created successfully') {

@@ -8,6 +8,7 @@ import NewPostPage from '../../components/home/pages/NewPost';
 import ConfessionsPage from '../../components/home/pages/Confessions';
 import SettingsPage from '../../components/home/pages/Settings';
 import Header from '../../components/home/Header';
+import apiBaseUrl from '../../utils/apiConfig';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState(0);
@@ -20,7 +21,7 @@ export default function Home() {
     setIsLoading(true);
     try {
       console.log("Fetching data...");
-      const response = await axios.get(`https://ajsibleyback-310003c917de.herokuapp.com/api/posts/paginated?start=${start}&limit=${limit}`);
+      const response = await axios.get(`${apiBaseUrl}/api/posts/paginated?start=${start}&limit=${limit}`);
       const { posts } = response.data;
       console.log("API response: ", JSON.stringify(posts))
       if (posts.length < limit) setHasMore(false); // NEW
