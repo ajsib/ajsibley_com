@@ -1,14 +1,16 @@
 let apiBaseUrl: string;
 
-if (typeof window === 'undefined') {
-  // We are on the server
-  apiBaseUrl = process.env.NODE_ENV === 'production' ? 'https://ajsibleyback-310003c917de.herokuapp.com' : 'http://localhost:3000';
+if (process.env.NODE_ENV === 'production') {
+  // We are on the server and in production mode
+  apiBaseUrl = 'https://ajsibleyback-310003c917de.herokuapp.com';
 } else {
-  // We are on the client
-  if (window.location.hostname === 'localhost') {
-    apiBaseUrl = 'http://localhost:3000';
+  // We are on the server or client but in development mode
+  if (typeof window !== 'undefined') {
+    // We are on the client
+    apiBaseUrl = window.location.hostname === 'localhost' ? 'http://localhost:3000' : 'http://192.168.50.222:3000';
   } else {
-    apiBaseUrl = 'http://192.168.50.222:3000';
+    // We are on the server
+    apiBaseUrl = 'http://localhost:3000';  // Default to localhost; change to network URL if needed
   }
 }
 
