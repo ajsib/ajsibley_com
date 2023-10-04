@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
+import { useCallback } from "react";
 
 // Styled components
 const HeaderContainer = styled.div<{ scrolled: boolean; showHeader: boolean }>`
@@ -71,7 +72,7 @@ const Header: React.FC = () => {
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [showHeader, setShowHeader] = useState(true);
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     const scrollTop = window.scrollY;
     const scrolled = scrollTop > 10;
     setScrolled(scrolled);
@@ -81,7 +82,7 @@ const Header: React.FC = () => {
 
     // Save the last scroll position
     setLastScrollTop(scrollTop);
-  };
+  }, [lastScrollTop]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);

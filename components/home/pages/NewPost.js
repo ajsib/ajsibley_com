@@ -81,7 +81,7 @@ const NewPost = () => {
 
   return (
     <Container maxWidth="lg">
-      <h1>Let's Post a Headline!</h1>
+      <h1>Let&apos;s Post a Headline!</h1>
       <Box display="flex" flexDirection="column" gap={2}>
         <TextField label="Headline" variant="outlined" fullWidth onChange={(e) => setHeader(e.target.value)} />
         <TextField label="Hook" variant="outlined" fullWidth multiline minRows={3} onChange={(e) => setHook(e.target.value)} />
