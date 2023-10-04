@@ -2,8 +2,9 @@ import { AppProps } from 'next/app';
 import { useState, useEffect } from 'react';
 import { MoonLoader } from 'react-spinners';
 import AuthCheck from '../utils/AuthCheck';
-import 'react-quill/dist/quill.snow.css';
 import React from 'react';
+
+
 function MyApp({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(false);
 
