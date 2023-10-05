@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, Typography, Collapse, IconButton } from '@mui/material';
-import { FaLock, FaLaugh, FaUserSecret } from 'react-icons/fa';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const MarketingPage = () => {
@@ -27,19 +26,19 @@ const MarketingPage = () => {
       title: 'Post 1 Confession Per Day',
       teaser: 'Make Every Word Count!',
       expandedText: 'Post one confession per day to ensure that every secret is meaningful and impactful. Less is more!',
-      icon: <FaLock size={30} color="#FFD100" />
+      // icon: <FaLock size={30} color="#FFD100" />
     },
     {
       title: 'Anonymous',
       teaser: 'Be Yourself, Anonymously!',
       expandedText: 'With our privacy-focused approach, you can share what you feel without the fear of judgment. Total anonymity.',
-      icon: <FaUserSecret size={30} color="#FFD100" />
+      // icon: <FaUserSecret size={30} color="#FFD100" />
     },
     {
       title: "Funny, It's Always the Commerce Kids",
       teaser: 'Laughter Guaranteed!',
       expandedText: "You'll never run out of entertainment. Get your daily dose of laughs with quirky confessions from Commerce kids.",
-      icon: <FaLaugh size={30} color="#FFD100" />
+      // icon: <FaLaugh size={30} color="#FFD100" />
     },
   ];
 
@@ -57,7 +56,7 @@ const MarketingPage = () => {
           {features.map((feature, index) => (
             <Card style={commonCardStyles} key={index}>
               <CardHeader
-                avatar={feature.icon}
+                // avatar={feature.icon}
                 title={feature.title}
                 titleTypographyProps={{ style: dropdownTextStyles }}
               />
