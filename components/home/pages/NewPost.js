@@ -17,7 +17,7 @@ const T1FContainer = styled.div`
   margin: auto;
 `;
 
-const T1BContainer = styled.div`
+const T1BContainer = styled.div` 
   display: flex;
   justify-content: center;
   max-width: 500px;
