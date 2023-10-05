@@ -47,7 +47,7 @@ const MarketingPage = () => {
     <div style={{ fontFamily: 'Arial, sans-serif', textAlign: 'center' }}>
       {/* Header Section */}
       <div style={{ backgroundColor: '#003366', color: '#FFD100', padding: '2em' }}>
-        <Typography variant="h2">The Future of Queen's Confessions</Typography>
+        <Typography variant="h2">The Future of Queen&apos;s Confessions</Typography>
       </div>
 
       {/* Features Section */}

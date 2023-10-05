@@ -112,7 +112,7 @@ const NewPost = () => {
   return (
     <Container maxWidth="lg">
       <Box textAlign="center" py={2}>
-        <h4>👋 Let's Make Headlines, {author}!</h4>
+        <h4>👋 Let&apos;s Make Headlines, {author}!</h4>
       </Box>
       {/* Your existing input fields here, unchanged */}
       <Box display="flex" flexDirection="column" gap={2}>
