@@ -25,7 +25,9 @@ const ProfileCard = () => {
   const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
+    console.log('ProfileCard.js: useEffect()');  // debug line
     const { profile, user } = getUserInfo();
+    console.log("Profile and user from getUserInfo:", profile, user);  // Debug line
     if (profile && user) {
       setUserInfo({
         name: profile.name,

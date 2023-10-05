@@ -15,16 +15,14 @@ export default function Home() {
   const [cardsData, setCardsData] = useState<any[]>([]);;
   const [page, setPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true); // NEW
+  const [hasMore, setHasMore] = useState(true);
 
   const fetchData = async (start: number, limit = 20) => {
     setIsLoading(true);
     try {
-      console.log("Fetching data...");
       const response = await axios.get(`${apiBaseUrl}/api/posts/paginated?start=${start}&limit=${limit}`);
       const { posts } = response.data;
-      console.log("API response: ", JSON.stringify(posts))
-      if (posts.length < limit) setHasMore(false); // NEW
+      if (posts.length < limit) setHasMore(false); 
       return posts;
     } catch (error) {
       console.error('Error fetching data:', error);
