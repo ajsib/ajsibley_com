@@ -1,8 +1,9 @@
 // ProfileCard.js
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
+import { getUserInfo } from '../../../../utils/userProfile/UserInfo';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import { styled } from '@mui/system';
@@ -19,8 +20,26 @@ const StyledPaper = styled(Paper)`
   box-shadow: 0px -10px 10px rgba(0, 0, 0, 0.1);
 `;
 
-const ProfileCard = ({ userInfo }) => {
+const ProfileCard = () => {
   const [isEditing, setEditing] = useState(false);
+  const [userInfo, setUserInfo] = useState({});
+
+  useEffect(() => {
+    const { profile, user } = getUserInfo();
+    if (profile && user) {
+      setUserInfo({
+        name: profile.name,
+        username: user.username,
+        program: profile.program,
+        yearOfStudy: profile.yearOfStudy,
+        yearOfStudyString: profile.yearOfStudyString,
+        bio: profile.bio,
+        userEmoji: profile.programEmoji,
+        dateJoined: user.dateJoinedHR
+      });
+    }
+  }, []);
+
 
   const handleEdit = () => {
     setEditing(!isEditing);

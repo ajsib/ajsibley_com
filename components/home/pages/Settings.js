@@ -1,6 +1,5 @@
 // ProfilePage.js
-import React, { useState, useEffect } from 'react';
-import { getUserInfo } from '../../../utils/userProfile/UserInfo';
+import React from 'react';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/system';
 import ProfileCard from './profile/ProfileCard';
@@ -19,23 +18,6 @@ const TabsCardContainer = styled(Box)`
 `;
 
 const ProfilePage = () => {
-  const [userInfo, setUserInfo] = useState({});
-
-  useEffect(() => {
-    const { profile, user } = getUserInfo();
-    if (profile && user) {
-      setUserInfo({
-        name: profile.name,
-        username: user.username,
-        program: profile.program,
-        yearOfStudy: profile.yearOfStudy,
-        yearOfStudyString: profile.yearOfStudyString,
-        bio: profile.bio,
-        userEmoji: profile.programEmoji,
-        dateJoined: user.dateJoinedHR
-      });
-    }
-  }, []);
 
   return (
     <Box
@@ -48,7 +30,7 @@ const ProfilePage = () => {
       }}
     >
     <ProfileCardContainer>
-      <ProfileCard userInfo={userInfo} />
+      <ProfileCard/>
     </ProfileCardContainer>
     <TabsCardContainer>
       <TabsCard />
