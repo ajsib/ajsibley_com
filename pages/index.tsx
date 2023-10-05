@@ -87,6 +87,12 @@ export default function Home() {
   ];
 
   return (
+    <div
+      style={{
+
+      }}
+    >
+
     <Container maxWidth="sm">
             <WelcomeContainer>
         <WelcomeHeadline>Welcome to Headline 👋</WelcomeHeadline>
@@ -133,5 +139,7 @@ export default function Home() {
       <Box height={15} />
       <CardGrid cards={cardsData} />
     </Container>
+    <Box height={70} />
+    </div>
   );
 }

@@ -30,11 +30,10 @@ export default function CardGrid({ cards }: CardGridProps) {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      width: '100%',
+      width: '97%',
       margin: '0 auto',
       position: 'relative',
-      paddingLeft: '-3px',  
-      paddingRight: '11px',
+      maxWidth: '400px',
     }}>
       <div style={{ 
         width: '50%',

@@ -4,7 +4,6 @@ import { MoonLoader } from 'react-spinners';
 import AuthCheck from '../utils/AuthCheck';
 import React from 'react';
 
-
 function MyApp({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(false);
 
@@ -36,8 +35,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   // Wrap the component with AuthCheck for authentication and authorization purposes
   return (
     <AuthCheck>
-      {/* Add a container div to make the website subtable for all platforms */}
-      <div style={{ width: '100%', maxWidth: '400px', margin: '0 auto', padding: '0 0px' }}>
+      {/* Apply overflow-x: hidden to the container div to prevent horizontal overflow */}
+      <div 
+      style={{
+        marginLeft: '-7px',
+        marginRight: '-7px',
+        overflowX: 'hidden',
+      }}
+      >
         <Component {...pageProps} />
       </div>
     </AuthCheck>

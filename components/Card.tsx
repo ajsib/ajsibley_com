@@ -24,6 +24,7 @@ export default function Card({ front, back,  openFullScreenCard }: CardProps) {
     margin: '1px',
     backgroundColor: '#fff',
     overflow: 'hidden',
+    maxWidth: '200px',
   };
 
   return (

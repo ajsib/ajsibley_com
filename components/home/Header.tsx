@@ -14,6 +14,26 @@ const HeaderContainer = styled.div<{ scrolled: boolean; showHeader: boolean }>`
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
   height: ${(props) => (props.scrolled ? "60px" : "100px")};
   opacity: ${(props) => (props.showHeader ? "1" : "0")};
+  
+  /* Adding the tricolor ribbon */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(
+      to bottom right,
+      #002452,
+      #002452 33%,
+      #fabd0f 33%,
+      #fabd0f 66%,
+      #b90e31 66%
+    );
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    opacity: 1;  // You can adjust opacity
+  }
 `;
 
 const HeaderContent = styled.div`
@@ -54,18 +74,6 @@ const WelcomeHeadline = styled.h1`
   text-align: center;
 `;
 
-const getGreeting = () => {
-  const currentTime = new Date();
-  const currentHour = currentTime.getHours();
-  if (currentHour >= 5 && currentHour < 12) {
-    return 'Good morning';
-  } else if (currentHour >= 12 && currentHour < 18) {
-    return 'Good afternoon';
-  } else {
-    return 'Good evening';
-  }
-};
-
 // Main component
 const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -98,8 +106,8 @@ const Header: React.FC = () => {
           <WelcomeHeadline>Headline</WelcomeHeadline>
         ) : (
           <>
-            <RegularGreeting>{`${getGreeting()},`}</RegularGreeting>
-            <SimplifiedContainer>here are today&apos;s headlines.</SimplifiedContainer>
+            <RegularGreeting>Headline</RegularGreeting>
+            <SimplifiedContainer>Headlines, Hooks, and Heartfelt Stories</SimplifiedContainer>
           </>
         )}
       </HeaderContent>

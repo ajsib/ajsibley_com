@@ -1,21 +1,25 @@
 import styled from 'styled-components';
+import { Button, IconButton } from '@mui/material';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import CommentIcon from '@mui/icons-material/Comment';
 
 const CardContainer = styled.div`
-  padding: 15px;  // Increased padding
+  padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   border-radius: 10px;
   font-family: 'Georgia', serif;
-  margin: 0;
+  margin: 10px 10px;
 `;
 
 const Headline = styled.h1`
-  font-size: 24px;  // Increased font-size
+  font-size: 24px;
   font-weight: bold;
   color: #333;
-  margin: 8px 0;  // Adjusted margin
+  margin: 8px 0;
   text-align: center;
 `;
 
@@ -26,20 +30,30 @@ const Separator = styled.hr`
 `;
 
 const Description = styled.p`
-  font-size: 18px;  // Increased font-size
+  font-size: 18px;
   color: #777;
-  margin: 4px 0;  // Adjusted margin
+  margin: 12px 0;
   text-align: justify;
-  line-height: 1.4;  // Increased line-height
+  line-height: 1.4;
   white-space: pre-wrap;
 `;
+
 
 const Footer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  text-transform: uppercase;  // Make text all caps
-  font-size: 16px;  // Increased font-size from 14px to 16px
+  text-transform: uppercase;
+  font-size: 16px;
+  font-family: 'Georgia', serif;
+  padding-top: 30px;
+`;
+
+const InteractionButtons = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 12px;
 `;
 
 const mapYearToText = (year) => {
@@ -63,10 +77,20 @@ export default function T1B({ headline, author, program, yearOfStudy, descriptio
       <Separator />
       <Description dangerouslySetInnerHTML={{ __html: description }} />
       <Footer>
-        <small>{author}</small>
+        <small>{author + " "}</small>  {/* Added space after the last character */}
         <small>{`${formattedYear}, ${program}`}</small>
       </Footer>
+      {/* <InteractionButtons>
+        <IconButton color="primary">
+          <ThumbUpIcon />
+        </IconButton>
+        <IconButton color="secondary">
+          <AccountCircleIcon />
+        </IconButton>
+        <Button startIcon={<CommentIcon />}>
+          Open Comments
+        </Button>
+      </InteractionButtons> */}
     </CardContainer>
   );
 }
-

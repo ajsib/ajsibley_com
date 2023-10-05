@@ -2,6 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import CardGrid from '../../CardGrid';
 import T1B from '../pages/templates/t1b';
 import T1F from '../pages/templates/t1f';
+import box from '@mui/material';
+import { Box } from '@mui/system';
 
 const Home = ({ cardsData, loadMoreCards, isLoading, hasMore }) => {
   const [cards, setCards] = useState([]);
@@ -66,9 +68,10 @@ const Home = ({ cardsData, loadMoreCards, isLoading, hasMore }) => {
   }, [handleScroll]);
 
   return (
-    <div>
-      <h1>Welcome to Home Page</h1>
+    <div style={{ textAlign: 'center', padding: '1px' }}>
+      <Box sx={{ height: '20px' }}/>
       <CardGrid cards={cards} />
+
     </div>
   );
 };
