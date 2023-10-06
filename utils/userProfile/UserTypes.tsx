@@ -10,6 +10,13 @@ export interface UserProfile {
   __v: number;
   yearOfStudyString: string; // Optional field for the string version of year
   programEmoji: string; // Optional field for program emoji
+  // these are the user fields that become part of the profile
+  username: string;
+  emailPhone: string;
+  isNewUser: boolean;
+  dateJoined: string;
+  dateJoinedHR: string;
+
 }
 
 export interface User {

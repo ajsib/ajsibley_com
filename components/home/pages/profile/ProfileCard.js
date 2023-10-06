@@ -1,47 +1,25 @@
 // ProfileCard.js
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-import { getUserInfo } from '../../../../utils/userProfile/UserInfo';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import { styled } from '@mui/system';
 import { TextField, Button } from '@mui/material';
 
-
 const StyledPaper = styled(Paper)`
-  padding: 20px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
   font-family: 'Georgia', serif;
-  box-shadow: 0px -10px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.15);
 `;
 
-const ProfileCard = () => {
+const ProfileCard = ({ userInfo }) => {
   const [isEditing, setEditing] = useState(false);
-  const [userInfo, setUserInfo] = useState({});
-
-  useEffect(() => {
-    console.log('ProfileCard.js: useEffect()');  // debug line
-    const { profile, user } = getUserInfo();
-    console.log("Profile and user from getUserInfo:", profile, user);  // Debug line
-    if (profile && user) {
-      setUserInfo({
-        name: profile.name,
-        username: user.username,
-        program: profile.program,
-        yearOfStudy: profile.yearOfStudy,
-        yearOfStudyString: profile.yearOfStudyString,
-        bio: profile.bio,
-        userEmoji: profile.programEmoji,
-        dateJoined: user.dateJoinedHR
-      });
-    }
-  }, []);
-
 
   const handleEdit = () => {
     setEditing(!isEditing);

@@ -17,11 +17,12 @@ const StyledPaper = styled(Paper)`
   align-items: center;
   border-radius: 20px;
   font-family: 'Georgia', serif;
-  box-shadow: 0px -10px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px -3px 3px rgba(0, 0, 0, 0.1);
 `;
 
 const StyledTabs = styled(Tabs)`
   background-color: #eee;
+  box-shadow: 0px -3px 3px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   width: 100%;
 `;

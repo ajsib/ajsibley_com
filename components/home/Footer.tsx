@@ -1,10 +1,10 @@
 import React, { useState, Dispatch, SetStateAction } from 'react';
 import { BottomNavigation, BottomNavigationAction, Box } from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
-import SearchIcon from '@mui/icons-material/Search';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import LockIcon from '@mui/icons-material/Lock';
-import SettingsIcon from '@mui/icons-material/Settings';
+import HomeIcon from '@mui/icons-material/HomeTwoTone';
+import SearchIcon from '@mui/icons-material/SearchTwoTone';
+import AddCircleIcon from '@mui/icons-material/AddCircleTwoTone';
+import LockIcon from '@mui/icons-material/LockTwoTone';
+import PersonIcon from '@mui/icons-material/PersonTwoTone';
 
 type FooterNavProps = {
   activeTab: number;
@@ -17,10 +17,10 @@ export default function FooterNav({ activeTab, setActiveTab }: FooterNavProps) {
   return (
     <>
       <Box
-        display="flex"
+        // display="flex"
         justifyContent="center"
         alignItems="center"
-        overflow="hidden"
+        // overflow="hidden"
       >
         {/* Your content here */}
       </Box>
@@ -28,22 +28,24 @@ export default function FooterNav({ activeTab, setActiveTab }: FooterNavProps) {
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
-          setActiveTab(newValue);  // Update the activeTab in the parent component
+          setActiveTab(newValue); // Update the activeTab in the parent component
         }}
         showLabels
         style={{
           position: 'fixed',
           bottom: 0,
-          left: '10px',
-          right: '10px',
+          left: '0px',
+          right: '0px',
           zIndex: 98,
+          boxShadow: '0px -5px 10px rgba(0, 0, 0, 0.2)', // Add shadow
+          borderRadius: '7px 7px 0 0', // Round the top corners
         }}
       >
         <BottomNavigationAction label="" icon={<HomeIcon />} />
         <BottomNavigationAction label="" icon={<SearchIcon />} />
         <BottomNavigationAction label="" icon={<AddCircleIcon />} />
         <BottomNavigationAction label="" icon={<LockIcon />} />
-        <BottomNavigationAction label="" icon={<SettingsIcon />} />
+        <BottomNavigationAction label="" icon={<PersonIcon />} />
       </BottomNavigation>
     </>
   );

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface FullScreenCardProps {
   content: React.ReactElement;
@@ -80,9 +80,9 @@ const FullScreenCard: React.FC<FullScreenCardProps> = ({ content, closeCard }) =
   };
 
   const handleDragEnd = (e: any, { offset }: any) => {
-    if (offset.x > 160) {
+    if (offset.x > 130) {
       closeCard();
-    } else if (offset.x < -160) {
+    } else if (offset.x < -130) {
       closeCard();
     }
     setShowIndicator(null);
@@ -98,9 +98,10 @@ const FullScreenCard: React.FC<FullScreenCardProps> = ({ content, closeCard }) =
         dragConstraints={{ left: 0, right: 0 }}
         onDrag={handleDrag}
         onDragEnd={handleDragEnd}
-        initial={{ opacity: 0, y: 50 }}  // starts at 50 pixels below and is fully transparent
-        animate={{ opacity: 1, y: 0 }}  // animates into the natural position and becomes fully opaque
-        exit={{ opacity: 0, y: -50 }}  // animates 50 pixels upwards and becomes transparent when exiting
+        initial={{ opacity: 0, y: 50, scale: 1 }}  // Added scale: 1
+        animate={{ opacity: 1, y: 0, scale: 1 }}  // Added scale: 1
+        exit={{ opacity: 0, y: -50, scale: 0.5 }}  // Added scale: 0.5
+        transition={{ duration: 0.15 }}  // Added transition duration
       >
         {showIndicator && (
           <div style={indicatorStyles}>

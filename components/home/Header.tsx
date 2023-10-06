@@ -4,36 +4,37 @@ import { useCallback } from "react";
 
 // Styled components
 const HeaderContainer = styled.div<{ scrolled: boolean; showHeader: boolean }>`
-  position: fixed;
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+z-index: 99;
+background-color: #ffffff;
+transition: all 0.3s ease;
+box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+height: ${(props) => (props.scrolled ? "60px" : "100px")};
+opacity: ${(props) => (props.showHeader ? "1" : "0")};
+border-radius: 0 0 7px 7px; /* Rounded bottom corners by 7 pixels */
+
+/* Adding the tricolor ribbon */
+&::before {
+  content: "";
+  position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  z-index: 99;
-  background-color: #ffffff;
-  transition: all 0.3s ease;
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
-  height: ${(props) => (props.scrolled ? "60px" : "100px")};
-  opacity: ${(props) => (props.showHeader ? "1" : "0")};
-  
-  /* Adding the tricolor ribbon */
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(
-      to bottom right,
-      #002452,
-      #002452 33%,
-      #fabd0f 33%,
-      #fabd0f 66%,
-      #b90e31 66%
-    );
-    clip-path: polygon(0 0, 100% 0, 0 100%);
-    opacity: 1;  // You can adjust opacity
-  }
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(
+    to bottom right,
+    #002452,
+    #002452 33%,
+    #fabd0f 33%,
+    #fabd0f 66%,
+    #b90e31 66%
+  );
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  opacity: 1;  // You can adjust opacity
+}
 `;
 
 const HeaderContent = styled.div`

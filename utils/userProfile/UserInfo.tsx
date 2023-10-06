@@ -65,6 +65,7 @@ export const getUserInfo = (): { profile: UserProfile | null, user: User | null 
       ...profile,
       yearOfStudyString: yearToString(profile.yearOfStudy),
       programEmoji: programToEmoji(profile.program),
+      dateJoinedHR: formatDate(profile.dateJoined),
     };
   }
 

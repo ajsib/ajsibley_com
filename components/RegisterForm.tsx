@@ -38,8 +38,6 @@ export default function RegisterForm() {
         }
       });
 
-      console.log(response.data);
-
       // If registration is successful, log in the user
       const loginResponse = await axios.post(`${apiBaseUrl}/api/user/login`, {
         usernameOrEmail: emailPhone, // You can use either email or username to log in
@@ -53,6 +51,7 @@ export default function RegisterForm() {
       const { data } = loginResponse;
 
       localStorage.setItem('token', data.token);
+      localStorage.setItem('profile', JSON.stringify(data.profile));
 
       setUsername('');
       setEmailPhone('');

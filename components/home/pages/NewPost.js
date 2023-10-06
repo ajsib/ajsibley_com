@@ -8,13 +8,18 @@ import axios from 'axios';
 import { getUserInfo } from '../../../utils/userProfile/UserInfo';
 import apiBaseUrl from '../../../utils/apiConfig';
 import styled from 'styled-components';
+import { height } from '@mui/system';
 
 // Styled component for centering cards
 const T1FContainer = styled.div`
+  padding-top: 10px;
+  padding-bottom: 10px;
   display: flex;
   justify-content: center;
   max-width: 150px; 
   margin: auto;
+  background-color: #f1f2f2;
+  border-radius: 15px;
 `;
 
 const T1BContainer = styled.div` 
@@ -22,6 +27,8 @@ const T1BContainer = styled.div`
   justify-content: center;
   max-width: 500px;
   margin: auto;
+  background-color: #f1f2f2;
+  border-radius: 15px;
 `;
 
 const NewPost = () => {
@@ -136,7 +143,7 @@ const NewPost = () => {
       <T1FContainer>
         <T1F header={header} hook={hook} callToAction={callToAction} emoji={emoji} />
       </T1FContainer>
-      
+      <Box sx={{height:'20px'}}></Box>
       <T1BContainer>
         <T1B headline={header} author={author} program={program} yearOfStudy={yearOfStudy} description={description} />
       </T1BContainer>

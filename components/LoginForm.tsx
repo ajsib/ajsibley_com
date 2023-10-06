@@ -22,7 +22,6 @@ export default function LoginForm() {
     }
   
     try {
-      console.log(apiBaseUrl)
       const response = await axios.post(`${apiBaseUrl}/api/user/login`, {
         usernameOrEmail,
         password

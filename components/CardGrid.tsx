@@ -2,6 +2,7 @@
 import React, { useState }  from 'react';
 import Card from './Card';
 import FullScreenCard from './FullScreenCard';
+import { AnimatePresence } from 'framer-motion';
 
 interface CardProps {
   front: React.ReactElement;
@@ -27,14 +28,14 @@ export default function CardGrid({ cards }: CardGridProps) {
 
   return (
     <div style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: '97%',
-      margin: '0 auto',
-      position: 'relative',
-      maxWidth: '400px',
-    }}>
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '97%', 
+        margin: '0 auto',
+        position: 'relative',
+        maxWidth: '400px',
+      }}>
       <div style={{ 
         width: '50%',
         display: 'flex',
@@ -48,7 +49,7 @@ export default function CardGrid({ cards }: CardGridProps) {
             key={index}
             front={card.front}
             back={card.back}
-            openFullScreenCard={openFullScreenCard}  // Passing the prop here
+            openFullScreenCard={openFullScreenCard}
           />
         ))}
       </div>
@@ -65,13 +66,15 @@ export default function CardGrid({ cards }: CardGridProps) {
             key={index}
             front={card.front}
             back={card.back}
-            openFullScreenCard={openFullScreenCard}  // Passing the prop here
+            openFullScreenCard={openFullScreenCard}
           />
         ))}
       </div>
-      {activeCard && (
-        <FullScreenCard content={activeCard} closeCard={closeFullScreenCard} />
-      )}
+      <AnimatePresence mode='wait'>
+        {activeCard && (
+          <FullScreenCard content={activeCard} closeCard={closeFullScreenCard} />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

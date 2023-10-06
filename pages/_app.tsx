@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { MoonLoader } from 'react-spinners';
 import AuthCheck from '../utils/AuthCheck';
 import React from 'react';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from '../styles/theme';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(false);
@@ -34,6 +36,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   // Wrap the component with AuthCheck for authentication and authorization purposes
   return (
+    <ThemeProvider theme={theme}>
     <AuthCheck>
       {/* Apply overflow-x: hidden to the container div to prevent horizontal overflow */}
       <div 
@@ -46,6 +49,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </div>
     </AuthCheck>
+    </ThemeProvider>
   );
 }
 

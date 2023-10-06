@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import { MoonLoader } from 'react-spinners'; // Import the spinner you want to use
 import { ReactNode } from 'react';
+import apiBaseUrl from './apiConfig';
 
 export default function AuthCheck({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -14,7 +15,7 @@ export default function AuthCheck({ children }: { children: ReactNode }) {
 
       if (token) {
         try {
-          const response = await axios.get('https://ajsibleyback-310003c917de.herokuapp.com/api/user/user', {
+          const response = await axios.get(`${apiBaseUrl}/api/user/user`, {
             headers: {
               'Authorization': `Bearer ${token}`
             }
