@@ -31,7 +31,7 @@ export default function CardGrid({ cards }: CardGridProps) {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '100%', 
+        width: '380px', 
         margin: '0 auto',
         position: 'relative',
         maxWidth: '380px',

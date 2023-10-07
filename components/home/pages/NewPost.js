@@ -106,6 +106,13 @@ const NewPost = () => {
     
     setLoading(false);
     setSuccessSnack(true);
+    // Now we want to set the input fields back to their default values
+    setHeader("Your Header");
+    setHook("Your Hook");
+    setCallToAction("Punch Line");
+    setEmoji("👍");
+    setDescription("Your Article Goes Here, feel free to \n \t \t \t type 👏\n \t \t \t your 👏 \n \t \t \t mind 👏");
+    // Then we want to change the cards back to their default values
   }
 
   useEffect(() => {
