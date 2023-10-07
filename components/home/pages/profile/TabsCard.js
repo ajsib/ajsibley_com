@@ -36,7 +36,7 @@ const TabsCard = () => {
   };
 
   return (
-    <>
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
       <StyledPaper>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <Typography variant="h6" style={{ fontWeight: 'bold', fontFamily: "'Comic Sans MS', sans-serif" }}>
@@ -56,8 +56,7 @@ const TabsCard = () => {
           </StyledTabs>
         </div>
       </StyledPaper>
-      <Box sx={{ height: '500px', background: "#fff" }}></Box>
-    </>
+    </div>
   );
 };
 

@@ -20,6 +20,7 @@ const T1FContainer = styled.div`
   margin: auto;
   background-color: #f1f2f2;
   border-radius: 15px;
+  shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 `;
 
 const T1BContainer = styled.div` 
@@ -42,7 +43,7 @@ const NewPost = () => {
   const [successSnack, setSuccessSnack] = useState(false);
   const [errorSnack, setErrorSnack] = useState(false); // New state variable for error Snackbar
 
-  const { profile, user } = getUserInfo();
+  const { profile } = getUserInfo();
   const author = profile.name;
   const program = profile.program;
   const yearOfStudy = profile.yearOfStudy;
@@ -122,6 +123,11 @@ const NewPost = () => {
         <h4>👋 Let&apos;s Make Headlines, {author}!</h4>
       </Box>
       {/* Your existing input fields here, unchanged */}
+
+      <T1FContainer>
+        <T1F header={header} hook={hook} callToAction={callToAction} emoji={emoji} />
+      </T1FContainer>
+      <Box sx={{height:'20px'}}></Box>
       <Box display="flex" flexDirection="column" gap={2}>
         <TextField label="Headline" variant="outlined" fullWidth onChange={(e) => setHeader(e.target.value)} />
         <TextField label="Hook" variant="outlined" fullWidth multiline minRows={3} onChange={(e) => setHook(e.target.value)} />
@@ -139,10 +145,6 @@ const NewPost = () => {
       </Box>
       {/* End of existing input fields */}
       <TextField label="Your Article" variant="outlined" fullWidth margin='normal' multiline minRows={4} onChange={(e) => setDescription(e.target.value)} />
-
-      <T1FContainer>
-        <T1F header={header} hook={hook} callToAction={callToAction} emoji={emoji} />
-      </T1FContainer>
       <Box sx={{height:'20px'}}></Box>
       <T1BContainer>
         <T1B headline={header} author={author} program={program} yearOfStudy={yearOfStudy} description={description} />

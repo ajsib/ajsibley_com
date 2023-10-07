@@ -15,7 +15,6 @@ const ProfileCardContainer = styled(Box)`
 `;
 
 const TabsCardContainer = styled(Box)`
-  width: 80%;
   z-index: 2;
   margin-top: 3px;
 `;
@@ -42,19 +41,20 @@ const ProfilePage = () => {
   return (
     <Box
       sx={{
-        display: 'flex',
+        position: 'relative', // Notice it's position, not display
+        // display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         minHeight: '100vh',
         py: 4,
       }}
     >
-    <ProfileCardContainer>
-      <ProfileCard userInfo={userInfo} />
-    </ProfileCardContainer>
-    <TabsCardContainer>
-      <TabsCard />
-    </TabsCardContainer>
+      <ProfileCardContainer>
+        <ProfileCard userInfo={userInfo} />
+      </ProfileCardContainer>
+      <TabsCardContainer>
+        <TabsCard />
+      </TabsCardContainer>
     </Box>
   );
 };

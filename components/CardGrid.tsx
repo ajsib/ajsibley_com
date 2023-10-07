@@ -31,15 +31,15 @@ export default function CardGrid({ cards }: CardGridProps) {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '97%', 
+        width: '100%', 
         margin: '0 auto',
         position: 'relative',
-        maxWidth: '400px',
+        maxWidth: '380px',
       }}>
       <div style={{ 
-        width: '50%',
+        width: '45%',
         display: 'flex',
-        gap: '8px',
+        gap: '12px',
         flexDirection: 'column',
         position: 'relative',
         alignItems: 'flex-start',
@@ -53,10 +53,11 @@ export default function CardGrid({ cards }: CardGridProps) {
           />
         ))}
       </div>
+      <div style={{flex: 0.25}}></div>
       <div style={{
-        width: '50%',
+        width: '45%',
         display: 'flex',
-        gap: '8px',
+        gap: '12px',
         flexDirection: 'column',
         position: 'relative',
         alignItems: 'flex-end',

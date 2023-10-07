@@ -19,7 +19,7 @@ export default function Card({ front, back,  openFullScreenCard }: CardProps) {
   const cardStyles = {
     width: '84%',
     borderRadius: '15px',
-    boxShadow: '0px 5px 15px rgba(0,0,0,0.15)',
+    boxShadow: '0px 5px 10px rgba(0,0,0,0.23)',
     padding: '10px',
     margin: '1px',
     backgroundColor: '#fff',

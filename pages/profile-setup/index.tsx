@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CardGrid from '../../components/CardGrid';
-import FullScreenCard from '../../components/FullScreenCard';
+// import FullScreenCard from '../../components/FullScreenCard';
 import F1 from '../../components/cards/profile-setup/f1';
 import B1 from '../../components/cards/profile-setup/b1';
 import F2 from '../../components/cards/profile-setup/f2';
