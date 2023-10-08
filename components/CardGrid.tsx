@@ -2,11 +2,12 @@
 import React, { useState }  from 'react';
 import Card from './Card';
 import FullScreenCard from './FullScreenCard';
-import { AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface CardProps {
   front: React.ReactElement;
   back: React.ReactElement;
+  width ?: string;
 }
 
 interface CardGridProps {
@@ -17,6 +18,7 @@ export default function CardGrid({ cards }: CardGridProps) {
   const [activeCard, setActiveCard] = useState<React.ReactElement | null>(null);
   const leftColumnCards = cards.filter((_, i) => i % 2 === 0);
   const rightColumnCards = cards.filter((_, i) => i % 2 !== 0);
+  const cardWidth = '100%';  // <--- This changes the width of the card
 
   const openFullScreenCard = (cardContent: React.ReactElement) => {
     setActiveCard(cardContent);
@@ -27,47 +29,53 @@ export default function CardGrid({ cards }: CardGridProps) {
   };
 
   return (
-    <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '380px', 
-        margin: '0 auto',
-        position: 'relative',
-        maxWidth: '380px',
-      }}>
-      <div style={{ 
-        width: '45%',
-        display: 'flex',
-        gap: '12px',
-        flexDirection: 'column',
-        position: 'relative',
-        alignItems: 'flex-start',
-      }}>
+    <motion.div 
+        // 
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '93%', // this changes the width of the card grid parent div
+          margin: '0 auto',
+          position: 'relative',
+          // maxWidth: '380px',
+        }}>
+      <div 
+        style={{ 
+          width: '40%',  // this changes the width of the left column div
+          display: 'flex',
+          gap: '15px',
+          flexDirection: 'column',
+          // position: 'relative',
+          alignItems: 'flex-end',
+        }}>
         {leftColumnCards.map((card, index) => (
           <Card
             key={index}
             front={card.front}
             back={card.back}
             openFullScreenCard={openFullScreenCard}
+            width={cardWidth}
           />
         ))}
       </div>
-      <div style={{flex: 0.25}}></div>
-      <div style={{
-        width: '45%',
-        display: 'flex',
-        gap: '12px',
-        flexDirection: 'column',
-        position: 'relative',
-        alignItems: 'flex-end',
-      }}>
+      <div style={{width: '15px'}}></div>
+      <div
+        style={{
+          width: '40%',  // this changes the width of the right column div
+          display: 'flex',
+          gap: '15px',
+          flexDirection: 'column',
+          // position: 'relative',
+          alignItems: 'flex-start',
+        }}>
         {rightColumnCards.map((card, index) => (
           <Card
             key={index}
             front={card.front}
             back={card.back}
             openFullScreenCard={openFullScreenCard}
+            width={cardWidth}
           />
         ))}
       </div>
@@ -76,6 +84,6 @@ export default function CardGrid({ cards }: CardGridProps) {
           <FullScreenCard content={activeCard} closeCard={closeFullScreenCard} />
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 }

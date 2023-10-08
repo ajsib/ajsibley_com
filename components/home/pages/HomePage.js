@@ -48,7 +48,7 @@ const Home = ({ cardsData, loadMoreCards, isLoading, hasMore }) => {
     if (isLoading || !hasMore) return;
     if (
       window.innerHeight + document.documentElement.scrollTop >=
-      document.documentElement.offsetHeight - 350
+      document.documentElement.offsetHeight - 600
     ) {
       loadMoreCards();
     }
@@ -68,7 +68,7 @@ const Home = ({ cardsData, loadMoreCards, isLoading, hasMore }) => {
   }, [handleScroll]);
 
   return (
-    <div style={{ textAlign: 'center', padding: '1px' }}>
+    <div style={{ textAlign: 'center', padding: '1px', background:'#f1f2f2' }}>
       <Box sx={{ height: '20px' }}/>
       <CardGrid cards={cards} />
 

@@ -6,9 +6,10 @@ interface CardProps {
   front: React.ReactElement;
   back: React.ReactElement;
   openFullScreenCard: (cardContent: React.ReactElement) => void; // Declare the new prop
+  width: string;
 }
 
-export default function Card({ front, back,  openFullScreenCard }: CardProps) {
+export default function Card({ front, back,  openFullScreenCard, width }: CardProps) {
   const frontCardRef = useRef<HTMLDivElement>(null);
 
   const handleSwipeRight = () => {
@@ -17,14 +18,14 @@ export default function Card({ front, back,  openFullScreenCard }: CardProps) {
 
   // Remove the minHeight property and add padding for aesthetic spacing
   const cardStyles = {
-    width: '84%',
+    width: width,
     borderRadius: '15px',
-    boxShadow: '0px 5px 10px rgba(0,0,0,0.23)',
-    padding: '10px',
+    boxShadow: '0px 4px 10px rgba(0,0,0,0.20)',
+    padding: '12px 10px',
     margin: '1px',
     backgroundColor: '#fff',
     overflow: 'hidden',
-    maxWidth: '200px',
+    // maxWidth: '200px',
   };
 
   return (
