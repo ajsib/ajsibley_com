@@ -7,7 +7,7 @@ import { AnimatePresence } from 'framer-motion';
 interface CardProps {
   front: React.ReactElement;
   back: React.ReactElement;
-  width : string;
+  width ?: string;
 }
 
 interface CardGridProps {
