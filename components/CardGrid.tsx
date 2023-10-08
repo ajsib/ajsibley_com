@@ -2,12 +2,12 @@
 import React, { useState }  from 'react';
 import Card from './Card';
 import FullScreenCard from './FullScreenCard';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 interface CardProps {
   front: React.ReactElement;
   back: React.ReactElement;
-  width ?: string;
+  width : string;
 }
 
 interface CardGridProps {
@@ -29,7 +29,7 @@ export default function CardGrid({ cards }: CardGridProps) {
   };
 
   return (
-    <motion.div 
+    <div 
         // 
         style={{
           display: 'flex',
@@ -38,7 +38,7 @@ export default function CardGrid({ cards }: CardGridProps) {
           width: '93%', // this changes the width of the card grid parent div
           margin: '0 auto',
           position: 'relative',
-          // maxWidth: '380px',
+          maxWidth: '450px',
         }}>
       <div 
         style={{ 
@@ -84,6 +84,6 @@ export default function CardGrid({ cards }: CardGridProps) {
           <FullScreenCard content={activeCard} closeCard={closeFullScreenCard} />
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
 }

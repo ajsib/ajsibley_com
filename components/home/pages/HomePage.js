@@ -2,11 +2,12 @@ import React, { useState, useEffect, useCallback } from 'react';
 import CardGrid from '../../CardGrid';
 import T1B from '../pages/templates/t1b';
 import T1F from '../pages/templates/t1f';
-import box from '@mui/material';
 import { Box } from '@mui/system';
+import { motion, useAnimation } from 'framer-motion';
 
 const Home = ({ cardsData, loadMoreCards, isLoading, hasMore }) => {
   const [cards, setCards] = useState([]);
+  const controls = useAnimation();
 
   const createCards = (posts) => {
     if (!posts) {
@@ -48,11 +49,14 @@ const Home = ({ cardsData, loadMoreCards, isLoading, hasMore }) => {
     if (isLoading || !hasMore) return;
     if (
       window.innerHeight + document.documentElement.scrollTop >=
-      document.documentElement.offsetHeight - 600
-    ) {
+      document.documentElement.offsetHeight - 800) {
       loadMoreCards();
     }
   }, [isLoading, hasMore, loadMoreCards]);
+
+  useEffect(() => {
+    controls.start({ y: [100, -10, 0], opacity: [0, 1], transition: { type: 'spring', damping: 20, stiffness: 502 } });
+  }, [controls]);
 
   useEffect(() => {
     if (!cardsData.length && !isLoading && hasMore) {
@@ -68,10 +72,14 @@ const Home = ({ cardsData, loadMoreCards, isLoading, hasMore }) => {
   }, [handleScroll]);
 
   return (
-    <div style={{ textAlign: 'center', padding: '1px', background:'#f1f2f2' }}>
+    <div style={{ textAlign: 'center', padding: '1px', background:'#fff' }}>
       <Box sx={{ height: '20px' }}/>
-      <CardGrid cards={cards} />
-
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={controls}
+      >
+        <CardGrid cards={cards} />
+      </motion.div>
     </div>
   );
 };
