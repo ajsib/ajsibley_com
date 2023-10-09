@@ -1,31 +1,41 @@
-// Card.tsx
-import { useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion, useAnimation } from 'framer-motion';
 
 interface CardProps {
   front: React.ReactElement;
   back: React.ReactElement;
-  openFullScreenCard: (cardContent: React.ReactElement) => void; // Declare the new prop
-  width: string;
+  profile?: React.ReactElement;  // New prop for the profile side
+  openFullScreenCard: (cardContent: React.ReactElement) => void;
+  width?: string;
 }
 
-export default function Card({ front, back,  openFullScreenCard, width }: CardProps) {
+export default function Card({ front, back, profile, openFullScreenCard, width }: CardProps) {
+  const [isFront, setIsFront] = useState(true);  // State to track which side is visible
   const frontCardRef = useRef<HTMLDivElement>(null);
+  const controls = useAnimation();  // Animation controls
 
   const handleSwipeRight = () => {
-    openFullScreenCard(back);   // <--- This method should come from CardGrid
-  }
+    openFullScreenCard(back);
+  };
 
-  // Remove the minHeight property and add padding for aesthetic spacing
+  const handleSwipeLeft = () => {
+    controls.start({
+      rotateY: [0, 180],
+      transition: { duration: 0.5 }
+    }).then(() => {
+      setIsFront(!isFront);  // Switch the side
+      controls.set({ rotateY: 0 });  // Reset the rotation
+    });
+  };
+
   const cardStyles = {
-    width: width,
+    width: width || '100%',
     borderRadius: '15px',
     boxShadow: '0px 4px 10px rgba(0,0,0,0.20)',
     padding: '12px 10px',
     margin: '1px',
     backgroundColor: '#fff',
     overflow: 'hidden',
-    // maxWidth: '200px',
   };
 
   return (
@@ -40,9 +50,13 @@ export default function Card({ front, back,  openFullScreenCard, width }: CardPr
         if (offset.x > 80) {
           handleSwipeRight();
         }
+        if (offset.x < -80) {
+          handleSwipeLeft();
+        }
       }}
+      animate={controls} // Attach the animation controls
     >
-      {front}
+      {isFront ? front : profile}
     </motion.div>
   );
 }

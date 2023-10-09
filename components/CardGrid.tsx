@@ -7,7 +7,7 @@ import { AnimatePresence } from 'framer-motion';
 interface CardProps {
   front: React.ReactElement;
   back: React.ReactElement;
-  width ?: string;
+  profile?: React.ReactElement;  // New prop for the profile side
 }
 
 interface CardGridProps {
@@ -56,6 +56,7 @@ export default function CardGrid({ cards }: CardGridProps) {
             back={card.back}
             openFullScreenCard={openFullScreenCard}
             width={cardWidth}
+            profile={card.profile}
           />
         ))}
       </div>
@@ -76,6 +77,7 @@ export default function CardGrid({ cards }: CardGridProps) {
             back={card.back}
             openFullScreenCard={openFullScreenCard}
             width={cardWidth}
+            profile={card.profile}
           />
         ))}
       </div>

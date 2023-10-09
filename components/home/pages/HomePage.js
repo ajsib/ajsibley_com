@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import CardGrid from '../../CardGrid';
 import T1B from '../pages/templates/t1b';
 import T1F from '../pages/templates/t1f';
+import T1P from '../pages/templates/t1p';
 import { Box } from '@mui/system';
 import { motion, useAnimation } from 'framer-motion';
 
@@ -17,6 +18,7 @@ const Home = ({ cardsData, loadMoreCards, isLoading, hasMore }) => {
       const {
         front: { headline, hook, callToAction, emoji },
         back: { authorName, paragraph, yearOfStudy, program },
+        authorProfile: { username, emoji: profileEmoji },
       } = post;
 
       const backComponent = (
@@ -38,9 +40,20 @@ const Home = ({ cardsData, loadMoreCards, isLoading, hasMore }) => {
         />
       );
 
+      const profileComponent = (
+        <T1P
+          author={authorName}
+          username={username}
+          program={program}
+          yearOfStudy={yearOfStudy}
+          emoji={profileEmoji}
+        />
+      );
+
       return {
         front: frontComponent,
         back: backComponent,
+        profile: profileComponent,
       };
     });
   };

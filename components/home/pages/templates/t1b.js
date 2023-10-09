@@ -69,7 +69,14 @@ const mapYearToText = (year) => {
 };
 
 export default function T1B({ headline, author, program, yearOfStudy, description }) {
-  const formattedYear = mapYearToText(yearOfStudy);
+  // if yearOfStudy is a number then continue else return 'Unknown Year'
+  if (!isNaN(yearOfStudy)) {
+    yearOfStudy = mapYearToText(yearOfStudy);
+  }
+  else {
+    yearOfStudy = yearOfStudy;
+  }
+
 
   return (
     <CardContainer>
@@ -78,7 +85,7 @@ export default function T1B({ headline, author, program, yearOfStudy, descriptio
       <Description dangerouslySetInnerHTML={{ __html: description }} />
       <Footer>
         <small>{author + " "}</small>  {/* Added space after the last character */}
-        <small>{`${formattedYear}, ${program}`}</small>
+        <small>{`${yearOfStudy}, ${program}`}</small>
       </Footer>
       {/* <InteractionButtons>
         <IconButton color="primary">

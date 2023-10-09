@@ -16,14 +16,7 @@ export default function FooterNav({ activeTab, setActiveTab }: FooterNavProps) {
 
   return (
     <>
-      <Box
-        // display="flex"
-        justifyContent="center"
-        alignItems="center"
-        // overflow="hidden"
-      >
-        {/* Your content here */}
-      </Box>
+
       <BottomNavigation
         value={value}
         onChange={(event, newValue) => {
