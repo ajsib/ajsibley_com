@@ -58,6 +58,7 @@ export default function Home() {
             ['FROSH', 'SECOND YEAR', 'FOURTH YEAR'][Math.floor(Math.random() * 3)]
           }
           description={card.back.article}
+          postId={NaN}
         />
       ),
     }));
