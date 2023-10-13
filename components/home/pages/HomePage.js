@@ -5,10 +5,13 @@ import T1F from '../pages/templates/t1f';
 import T1P from '../pages/templates/t1p';
 import { Box } from '@mui/system';
 import { motion, useAnimation } from 'framer-motion';
+import GeneralProfile from '../pages/profile/GeneralProfile';
 
-const Home = ({ cardsData, loadMoreCards, isLoading, hasMore }) => {
+const Home = ({ cardsData, loadMoreCards, isLoading, hasMore, selectedTab, setSelectedTab, data, setProfileId, setUserProfileOpen }) => {
   const [cards, setCards] = useState([]);
   const controls = useAnimation();
+  const [activeProfile, setActiveProfile] = useState(null);
+  const [reload, setReload] = useState(false);
 
   const createCards = (posts) => {
     if (!posts) {
@@ -16,10 +19,13 @@ const Home = ({ cardsData, loadMoreCards, isLoading, hasMore }) => {
     }
     return posts.map((post) => {
       const {
+        _id,
         front: { headline, hook, callToAction, emoji },
         back: { authorName, paragraph, yearOfStudy, program },
-        authorProfile: { username, emoji: profileEmoji },
+        authorProfile: { username, authorID },
       } = post;
+
+      setProfileId(post.authorProfile.authorID);
 
       const backComponent = (
         <T1B
@@ -28,6 +34,7 @@ const Home = ({ cardsData, loadMoreCards, isLoading, hasMore }) => {
           program={program}
           yearOfStudy={yearOfStudy}
           description={paragraph}
+          postId={_id}
         />
       );
 
@@ -46,7 +53,8 @@ const Home = ({ cardsData, loadMoreCards, isLoading, hasMore }) => {
           username={username}
           program={program}
           yearOfStudy={yearOfStudy}
-          emoji={profileEmoji}
+          authorID={authorID}
+          setActiveProfile={setActiveProfile}
         />
       );
 
@@ -54,6 +62,8 @@ const Home = ({ cardsData, loadMoreCards, isLoading, hasMore }) => {
         front: frontComponent,
         back: backComponent,
         profile: profileComponent,
+        hasRight: true,
+        hasLeft: true,
       };
     });
   };
@@ -68,10 +78,6 @@ const Home = ({ cardsData, loadMoreCards, isLoading, hasMore }) => {
   }, [isLoading, hasMore, loadMoreCards]);
 
   useEffect(() => {
-    controls.start({ y: [100, -10, 0], opacity: [0, 1], transition: { type: 'spring', damping: 20, stiffness: 502 } });
-  }, [controls]);
-
-  useEffect(() => {
     if (!cardsData.length && !isLoading && hasMore) {
       loadMoreCards();
     } else {
@@ -84,15 +90,46 @@ const Home = ({ cardsData, loadMoreCards, isLoading, hasMore }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
+  const handleReload = () => {
+    setReload(!reload);
+  }
+
+  useEffect(() => {
+    if (!cardsData.length && !isLoading && hasMore) {
+      loadMoreCards();
+    } else {
+      setCards(createCards(cardsData));
+    }
+    controls.start({ y: [100, -10, 0], opacity: [0, 1], transition: { type: 'spring', damping: 20, stiffness: 502 } });
+    
+  
+  }, [isLoading, reload]);
+  
+
   return (
-    <div style={{ textAlign: 'center', padding: '1px', background:'#fff' }}>
-      <Box sx={{ height: '20px' }}/>
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={controls}
-      >
-        <CardGrid cards={cards} />
-      </motion.div>
+    <div style={{ textAlign: 'center', padding: '1px', background: '#fff' }}>
+      {activeProfile ? (
+        setUserProfileOpen(true),
+        <GeneralProfile 
+          profileData={activeProfile} 
+          setActiveProfile={setActiveProfile} 
+          handleReload={handleReload} 
+          selectedTab={selectedTab}
+          setSelectedTab={setSelectedTab}
+          data={data}
+          setUserProfileOpen={setUserProfileOpen}
+        />
+      ) : (
+        <>
+          <Box sx={{ height: '20px' }} />
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={controls}
+          >
+            <CardGrid cards={cards} />
+          </motion.div>
+        </>
+      )}
     </div>
   );
 };

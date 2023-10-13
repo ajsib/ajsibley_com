@@ -6,8 +6,10 @@ import { AnimatePresence } from 'framer-motion';
 
 interface CardProps {
   front: React.ReactElement;
-  back: React.ReactElement;
+  back?: React.ReactElement;
   profile?: React.ReactElement;  // New prop for the profile side
+  hasRight?: boolean;
+  hasLeft?: boolean;
 }
 
 interface CardGridProps {
@@ -57,6 +59,8 @@ export default function CardGrid({ cards }: CardGridProps) {
             openFullScreenCard={openFullScreenCard}
             width={cardWidth}
             profile={card.profile}
+            hasRight={card.hasRight}
+            hasLeft={card.hasLeft}
           />
         ))}
       </div>
@@ -78,6 +82,8 @@ export default function CardGrid({ cards }: CardGridProps) {
             openFullScreenCard={openFullScreenCard}
             width={cardWidth}
             profile={card.profile}
+            hasRight={card.hasRight}
+            hasLeft={card.hasLeft}
           />
         ))}
       </div>

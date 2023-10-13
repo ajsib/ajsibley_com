@@ -59,13 +59,17 @@ const FullScreenCard: React.FC<FullScreenCardProps> = ({ content, closeCard }) =
     opacity: indicatorOpacity,
   };
 
+  const likeCard = () => {
+      
+  }
+
   const handleDrag = (e: any, { offset }: any) => {
-    let opacityLevel = Math.abs(offset.x) / 300;
-    let sizeLevel = 4 + Math.abs(offset.x) / 200;  // Add this line
+    let opacityLevel =  Math.abs(offset.x) / 350;
+    let sizeLevel = 5 + Math.abs(offset.x) / 80;  // Add this line
     if (opacityLevel > 1) opacityLevel = 1;
 
     if (offset.x > 20) {
-      setShowIndicator("❤️");
+      setShowIndicator("↪️");
       setIndicatorOpacity(opacityLevel);
       setIndicatorSize(sizeLevel);  // Add this line
     } else if (offset.x < -20) {

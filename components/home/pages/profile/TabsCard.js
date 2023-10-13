@@ -27,8 +27,7 @@ const StyledTabs = styled(Tabs)`
   width: 100%;
 `;
 
-const TabsCard = () => {
-  const [selectedTab, setSelectedTab] = useState(0);
+const TabsCard = ({ selectedTab, setSelectedTab, data }) => {
   const tabNames = ["Posts", "Likes", "Followers", "Following"]; // Names of the tabs
   
   const handleChangeTab = (event, newValue) => {
@@ -49,10 +48,10 @@ const TabsCard = () => {
             scrollButtons="auto"
             aria-label="scrollable auto tabs example"
           >
-            <Tab icon={<PostAddIcon />} label="32" />
-            <Tab icon={<ThumbUpIcon />} label="16" />
-            <Tab icon={<PeopleIcon />} label="1024" />
-            <Tab icon={<PersonAddIcon />} label="256" />
+            <Tab icon={<PostAddIcon />} label="32" />  {/* this will be the user posts   */}
+            <Tab icon={<ThumbUpIcon />} label="16" />  {/* this will be the user likes   */}
+            <Tab icon={<PeopleIcon />} label="1024" />  {/* this will be the user followers   */}
+            <Tab icon={<PersonAddIcon />} label="256" />  {/* this will be the user following   */}
           </StyledTabs>
         </div>
       </StyledPaper>

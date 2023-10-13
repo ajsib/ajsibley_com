@@ -50,7 +50,7 @@ const ProfilePage = () => {
       }}
     >
       <ProfileCardContainer>
-        <ProfileCard userInfo={userInfo} />
+        <ProfileCard userInfo={userInfo} canEdit={true} />
       </ProfileCardContainer>
       <TabsCardContainer>
         <TabsCard />

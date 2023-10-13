@@ -18,7 +18,7 @@ const StyledPaper = styled(Paper)`
   box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.15);
 `;
 
-const ProfileCard = ({ userInfo }) => {
+const ProfileCard = ({ userInfo, canEdit }) => {
   const [isEditing, setEditing] = useState(false);
 
   const handleEdit = () => {
@@ -27,9 +27,11 @@ const ProfileCard = ({ userInfo }) => {
 
   return (
     <StyledPaper>
-      <IconButton onClick={handleEdit} sx={{ alignSelf: 'flex-end' }}>
-        <EditIcon />
-      </IconButton>
+      { canEdit && (
+        <IconButton onClick={handleEdit} sx={{ alignSelf: 'flex-end' }}>
+          <EditIcon />
+        </IconButton>
+      )}
 
       <Avatar sx={{ width: 100, height: 100 }}>{userInfo.username?.[0]?.toUpperCase() || 'U'}</Avatar>
         <Typography variant="h5" style={{ fontWeight: "bold", fontFamily: "'Comic Sans MS', sans-serif", padding: 5 }}>

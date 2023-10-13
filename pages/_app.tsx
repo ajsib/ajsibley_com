@@ -37,18 +37,17 @@ function MyApp({ Component, pageProps }: AppProps) {
   // Wrap the component with AuthCheck for authentication and authorization purposes
   return (
     <ThemeProvider theme={theme}>
-    <AuthCheck>
-      {/* Apply overflow-x: hidden to the container div to prevent horizontal overflow */}
-      <div 
-      style={{
-        marginLeft: '-7px',
-        marginRight: '-7px',
-        overflowX: 'hidden',
-      }}
-      >
-        <Component {...pageProps} />
-      </div>
-    </AuthCheck>
+      <AuthCheck>
+        <div 
+        style={{
+          marginLeft: '-7px',
+          marginRight: '-7px',
+          overflowX: 'hidden',
+        }}
+        >
+          <Component {...pageProps} />
+        </div>
+      </AuthCheck>
     </ThemeProvider>
   );
 }

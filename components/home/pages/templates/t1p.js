@@ -1,13 +1,30 @@
 import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import apiBaseUrl from '../../../../utils/apiConfig';
 import Icon from '@mui/icons-material/OpenInNew';
+import axios from 'axios';
 
-const YourProfileCard = ({ username, program, emoji, year }) => {
-    const navigateToProfile = () => {
-        // Implement here!!!
+
+const t1p = ({ author, username, program, yearOfStudy, authorID, setActiveProfile  }) => {
+
+    const navigateToProfile = async () => {
+      try {
+        const response = await axios.get(`${apiBaseUrl}/api/profile/full/${authorID}`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`, // Replace with how you're storing tokens
+          }
+        });
+        
+        if (response.status === 200) {
+          const fullProfile = response.data;
+          setActiveProfile(fullProfile);  // Set the active profile to the full profile
+        }
+      } catch (error) {
+        console.error("Error while fetching full profile:", error);
+      }
     };
+
   return (
     <div
       style={{
@@ -18,15 +35,16 @@ const YourProfileCard = ({ username, program, emoji, year }) => {
     >
       <div
         style={{
-          position: 'relative',  // Add this line
+          position: 'relative', 
           display: 'flex',
           alignItems: 'center',
           padding: '5px 10px',
           borderRadius: '5px',
           marginTop: '10px',
           marginBottom: '5px',
+          zIndex: 4,
         }}
-        onClick={navigateToProfile} // Add onClick event here
+        onClick={navigateToProfile}
       >
         <Avatar sx={{ width: 75, height: 75 }}>{username?.[0]?.toUpperCase() || 'U'}</Avatar>
         <Icon 
@@ -49,11 +67,11 @@ const YourProfileCard = ({ username, program, emoji, year }) => {
 
       <div style={{ display: 'flex', alignItems: 'center', backgroundColor: '#eee', padding: '5px 10px', borderRadius: '5px', marginBottom: '10px' }}>
         <Typography variant="subtitle1" style={{ color: "#333", fontFamily: 'Georgia, serif', fontWeight: "bold", padding: '2px 10px' }}>
-          {`${(program ?? 'N/A').toUpperCase()}` } | {`${year ?? ''}`} 
+          {`${(program ?? 'N/A').toUpperCase()}` }-{`${yearOfStudy ?? ''}`}
         </Typography>
       </div>
     </div>
   );
 };
 
-export default YourProfileCard;
+export default t1p;
