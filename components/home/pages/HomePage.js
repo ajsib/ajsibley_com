@@ -7,7 +7,19 @@ import { Box } from '@mui/system';
 import { motion, useAnimation } from 'framer-motion';
 import GeneralProfile from '../pages/profile/GeneralProfile';
 
-const HomePage = ({ cardsData, loadMoreCards, isLoading, hasMore, selectedTab, setSelectedTab, data, setProfileId, setUserProfileOpen }) => {
+const HomePage = ({ 
+  cardsData,
+   loadMoreCards,
+  isLoading,
+  hasMore,
+  selectedTab, 
+  setSelectedTab, 
+  data, 
+  setProfileId, 
+  setUserProfileOpen, 
+  setDataByTab,
+  setFetchedTabs,
+}) => {
   const [cards, setCards] = useState([]);
   const controls = useAnimation();
   const [activeProfile, setActiveProfile] = useState(null);
@@ -25,7 +37,6 @@ const HomePage = ({ cardsData, loadMoreCards, isLoading, hasMore, selectedTab, s
         authorProfile: { username, authorID },
       } = post;
 
-      setProfileId(post.authorProfile.authorID);
 
       const backComponent = (
         <T1B
@@ -55,6 +66,7 @@ const HomePage = ({ cardsData, loadMoreCards, isLoading, hasMore, selectedTab, s
           yearOfStudy={yearOfStudy}
           authorID={authorID}
           setActiveProfile={setActiveProfile}
+          setProfileId={setProfileId}
         />
       );
 
@@ -92,6 +104,11 @@ const HomePage = ({ cardsData, loadMoreCards, isLoading, hasMore, selectedTab, s
 
   const handleReload = () => {
     setReload(!reload);
+    setUserProfileOpen(false); // Close the user profile
+    setActiveProfile(null);
+    setProfileId('');
+    setDataByTab({});
+    setFetchedTabs(new Set());
   }
 
   useEffect(() => {
@@ -117,7 +134,6 @@ const HomePage = ({ cardsData, loadMoreCards, isLoading, hasMore, selectedTab, s
             selectedTab={selectedTab}
             setSelectedTab={setSelectedTab}
             data={data}
-            setUserProfileOpen={setUserProfileOpen}
           />
       ) : (
         <>

@@ -29,7 +29,6 @@ const GeneralProfile = ({
   selectedTab,
   setSelectedTab,
   data,
-  setUserProfileOpen
 }) => {
 
   const [cards, setCards] = useState([]);
@@ -104,9 +103,7 @@ const GeneralProfile = ({
   };
 
   const handleBackClick = () => {
-    handleReload(); // Call handleReload when going back
-    setUserProfileOpen(false); // Close the user profile
-    setActiveProfile(null);
+    handleReload(); 
   };
   
   return (

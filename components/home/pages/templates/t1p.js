@@ -6,10 +6,11 @@ import Icon from '@mui/icons-material/OpenInNew';
 import axios from 'axios';
 
 
-const t1p = ({ author, username, program, yearOfStudy, authorID, setActiveProfile  }) => {
+const t1p = ({ author, username, program, yearOfStudy, authorID, setActiveProfile, setProfileId  }) => {
 
     const navigateToProfile = async () => {
       try {
+        setProfileId(authorID);  // Set the profile ID to the author ID
         const response = await axios.get(`${apiBaseUrl}/api/profile/full/${authorID}`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`, // Replace with how you're storing tokens

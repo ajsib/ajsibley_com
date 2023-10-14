@@ -37,10 +37,6 @@ export default function Home() {
       let nextStart = 0; // Initialize nextStart for infinite scroll
       const limit = 10; // Matched with the backend limit
 
-      console.log(`profileId: ${profileId}, authToken: ${authToken}`); // Debugging Line9
-
-      console.log(profileId);
-
       if (selectedTab === 0) {
         console.log("Making API call for tab 0"); // Debugging Line
         response = await axios.get(`${apiBaseUrl}/api/profile/${profileId}/posts?start=${nextStart}&limit=${limit}`, {
@@ -53,14 +49,13 @@ export default function Home() {
 
         nextStart = newNextStart;
 
-        console.log(posts);
         setDataByTab((prevData) => ({
           ...prevData,
           [selectedTab]: posts,
         }));
       }
       if (selectedTab === 1) {
-        console.log("Making API call for tab 1");
+        console.log("Making API call for tab 1"); // Debugging Line
         response = await axios.get(`${apiBaseUrl}/api/profile/${profileId}/likes?start=${nextStart}&limit=${limit}`, {
           headers: { Authorization: `Bearer ${authToken}` },
         });
@@ -71,48 +66,11 @@ export default function Home() {
 
         nextStart = newNextStart;
 
-        console.log(likes);
         setDataByTab((prevData) => ({
           ...prevData,
           [selectedTab]: likes,
         }));
       }
-      // if (selectedTab === 2) {
-      //   console.log("Making API call for tab 2");
-      //   response = await axios.get(`${apiBaseUrl}/api/profile/${profileId}/following?start=${nextStart}&limit=${limit}`, {
-      //     headers: { Authorization: `Bearer ${authToken}` },
-      //   });
-
-      //   const { posts, nextStart: newNextStart } = response.data;
-
-      //   if (posts.length < limit) setHasMore(false);
-
-      //   nextStart = newNextStart;
-
-      //   console.log(posts);
-      //   setDataByTab((prevData) => ({
-      //     ...prevData,
-      //     [selectedTab]: posts,
-      //   }));
-      // }
-      // if (selectedTab === 3) {
-      //   console.log("Making API call for tab 3");
-      //   response = await axios.get(`${apiBaseUrl}/api/profile/${profileId}/followers?start=${nextStart}&limit=${limit}`, {
-      //     headers: { Authorization: `Bearer ${authToken}` },
-      //   });
-
-      //   const { posts, nextStart: newNextStart } = response.data;
-
-      //   if (posts.length < limit) setHasMore(false);
-
-      //   nextStart = newNextStart;
-
-      //   console.log(posts);
-      //   setDataByTab((prevData) => ({
-      //     ...prevData,
-      //     [selectedTab]: posts,
-      //   }));
-      // }
 
       setFetchedTabs(new Set(fetchedTabs).add(selectedTab));
     } catch (error) {
@@ -123,8 +81,11 @@ export default function Home() {
   };
 
   useEffect(() => {
-    console.log('useEffect called');
+    console.log("active Profile", profileId); // Debugging Line
+    console.log("profile data", dataByTab); // Debugging Line
+    console.log("Fetched Tabs", fetchedTabs); // Debugging Line
     fetchDataForSelectedTab();
+
   }, [selectedTab, userProfileOpen]);
 
   const fetchData = async (start: number, limit = 29) => {
@@ -168,8 +129,10 @@ export default function Home() {
             selectedTab={selectedTab}
             setSelectedTab={setSelectedTab}
             data={dataByTab[selectedTab] || []} // Updated to use data from state object
+            setDataByTab={setDataByTab}
             setProfileId={setProfileId}
             setUserProfileOpen={setUserProfileOpen}
+            setFetchedTabs={setFetchedTabs}
           />
         )}
         {/* {activeTab === 1 && <CommunitiesPage />} */}
