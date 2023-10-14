@@ -4,7 +4,9 @@ import { getUserInfo } from '../../../utils/userProfile/UserInfo';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/system';
 import ProfileCard from './profile/ProfileCard';
-import TabsCard from './profile/TabsCard';
+import TabsCard from './profile/TabsCard'
+import T1B from  './templates/t1b';
+import T1F from  './templates/t1f';
 
 const ProfileCardContainer = styled(Box)`
   position: relative;
@@ -21,11 +23,14 @@ const TabsCardContainer = styled(Box)`
 
 const ProfilePage = () => {
   const [userInfo, setUserInfo] = useState({});
+  const [selectedTab, setSelectedTab] = useState(0);
 
   useEffect(() => {
     const { profile } = getUserInfo();
+    console.log(profile)
     if (profile) {
       setUserInfo({
+        _id: profile._id,
         name: profile.name,
         username: profile.username,
         program: profile.program,
@@ -33,10 +38,15 @@ const ProfilePage = () => {
         yearOfStudyString: profile.yearOfStudyString,
         bio: profile.bio,
         userEmoji: profile.programEmoji,
-        dateJoined: profile.dateJoinedHR
+        dateJoined: profile.dateJoinedHR,
+        likes: profile.likes,
+        posts: profile.posts
       });
     }
   }, []);
+
+  console.log(userInfo.likes)
+  console.log(userInfo.posts)
 
   return (
     <Box
@@ -53,7 +63,7 @@ const ProfilePage = () => {
         <ProfileCard userInfo={userInfo} canEdit={true} />
       </ProfileCardContainer>
       <TabsCardContainer>
-        <TabsCard />
+        <TabsCard selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       </TabsCardContainer>
     </Box>
   );

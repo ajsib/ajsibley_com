@@ -55,7 +55,7 @@ const BasicInfoPage = () => {
         Bio*:
       </Description>
       <CallToAction>
-        <ArrowForwardIcon style={{ color: '#7393B3' }} /> Swipe Left to Complete!
+        <ArrowForwardIcon style={{ color: '#7393B3' }} /> Tap the card!
       </CallToAction>
     </CardContainer>
   );

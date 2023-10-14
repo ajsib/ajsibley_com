@@ -46,15 +46,13 @@ const CallToAction = styled.div`
 const AdditionalInfoPage = () => {
   return (
     <CardContainer>
-      <Headline>Additional Info</Headline>
+      <Headline>Terms Of Use</Headline>
       <Separator />
       <Description>
-        Profile Photo: <br />
-        Orgs/Clubs: <br />
-        Contact:
+        Read through this page
       </Description>
       <CallToAction>
-        <ArrowForwardIcon style={{ color: '#7393B3' }} /> Swipe Left to Complete!
+        <ArrowForwardIcon style={{ color: '#7393B3' }} /> Tap the card!
       </CallToAction>
     </CardContainer>
   );

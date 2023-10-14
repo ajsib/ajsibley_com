@@ -39,9 +39,9 @@ export default function Card({ front, back, profile, openFullScreenCard, width, 
     const y = event.clientY - rect.top;
   
     if (frontIsVisible) {
-      if (x > rect.width / 2 - 40 && hasRight) {
+      if (x > rect.width / 2 - 30 && hasRight) {
         handleSwipeRight();
-      } else if (x < rect.width / 2 + 40 && hasLeft) {
+      } else if (x < rect.width / 2 + 30 && hasLeft) {
         handleSwipeLeft();
       }
     } else {
@@ -92,8 +92,8 @@ export default function Card({ front, back, profile, openFullScreenCard, width, 
       //   }
       // }}
       animate={controls} 
-      onClick={handleTap}
-      whileTap={{ scale: 0.90}}
+      onClick={handleTap}  // add event listener for click
+      whileTap={{ scale: 0.97}}
     >
       {isFront ? front : profile}
     </motion.div>

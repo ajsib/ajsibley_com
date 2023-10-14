@@ -59,6 +59,9 @@ const B1 = ({ formData, handleInputChange }) => {
 
   return (
     <FormContainer>
+      <Box 
+        style={{ height: '20px' }}
+      />
       <StyledTextField
         fullWidth
         label="Name"
@@ -145,7 +148,7 @@ const B1 = ({ formData, handleInputChange }) => {
         ) : isFormSubmitted ? (
           <>
             <Typography variant="body2" color="success">
-              Submitted! Swipe left to collapse.
+              Submitted! Swipe to collapse.
             </Typography>
             <ArrowBackIcon color="success" />
           </>

@@ -12,71 +12,127 @@ import apiBaseUrl from '../../utils/apiConfig';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState(0);
-  const [cardsData, setCardsData] = useState<any[]>([]);;
+  const [cardsData, setCardsData] = useState<any[]>([]);
   const [page, setPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
 
   const [userProfileOpen, setUserProfileOpen] = useState(false);
   const [selectedTab, setSelectedTab] = useState(0);
-  const [fetchedData, setFetchedData] = useState<any[]>([]);
   const [fetchedTabs, setFetchedTabs] = useState<Set<number>>(new Set());
   const [profileId, setProfileId] = useState<string>('');
+  const [dataByTab, setDataByTab] = useState<{ [key: number]: any[] }>({});
 
   const authToken = localStorage.getItem('token');
 
   const fetchDataForSelectedTab = async () => {
     if (!userProfileOpen) return;
-  
+
     if (fetchedTabs.has(selectedTab)) return;
-  
+
     setIsLoading(true);
-  
+
     try {
       let response;
       let nextStart = 0; // Initialize nextStart for infinite scroll
       const limit = 10; // Matched with the backend limit
-  
+
+      console.log(`profileId: ${profileId}, authToken: ${authToken}`); // Debugging Line9
+
       console.log(profileId);
-  
-      if (selectedTab === 0) { // Assuming 0 is for Posts
+
+      if (selectedTab === 0) {
+        console.log("Making API call for tab 0"); // Debugging Line
         response = await axios.get(`${apiBaseUrl}/api/profile/${profileId}/posts?start=${nextStart}&limit=${limit}`, {
           headers: { Authorization: `Bearer ${authToken}` },
         });
-  
+
         const { posts, nextStart: newNextStart } = response.data;
-        
-        if (posts.length < limit) setHasMore(false); // If fewer posts than limit, set 'hasMore' to false
-  
-        nextStart = newNextStart; // Update nextStart for the next API call
-        
+
+        if (posts.length < limit) setHasMore(false);
+
+        nextStart = newNextStart;
+
         console.log(posts);
-        setFetchedData(posts);
+        setDataByTab((prevData) => ({
+          ...prevData,
+          [selectedTab]: posts,
+        }));
       }
-  
-      // Implement other tabs as needed...
-  
-      setFetchedTabs(new Set(fetchedTabs).add(selectedTab)); // Mark tab as fetched
-  
+      if (selectedTab === 1) {
+        console.log("Making API call for tab 1");
+        response = await axios.get(`${apiBaseUrl}/api/profile/${profileId}/likes?start=${nextStart}&limit=${limit}`, {
+          headers: { Authorization: `Bearer ${authToken}` },
+        });
+
+        const { likes, nextStart: newNextStart } = response.data;
+
+        if (likes.length < limit) setHasMore(false);
+
+        nextStart = newNextStart;
+
+        console.log(likes);
+        setDataByTab((prevData) => ({
+          ...prevData,
+          [selectedTab]: likes,
+        }));
+      }
+      // if (selectedTab === 2) {
+      //   console.log("Making API call for tab 2");
+      //   response = await axios.get(`${apiBaseUrl}/api/profile/${profileId}/following?start=${nextStart}&limit=${limit}`, {
+      //     headers: { Authorization: `Bearer ${authToken}` },
+      //   });
+
+      //   const { posts, nextStart: newNextStart } = response.data;
+
+      //   if (posts.length < limit) setHasMore(false);
+
+      //   nextStart = newNextStart;
+
+      //   console.log(posts);
+      //   setDataByTab((prevData) => ({
+      //     ...prevData,
+      //     [selectedTab]: posts,
+      //   }));
+      // }
+      // if (selectedTab === 3) {
+      //   console.log("Making API call for tab 3");
+      //   response = await axios.get(`${apiBaseUrl}/api/profile/${profileId}/followers?start=${nextStart}&limit=${limit}`, {
+      //     headers: { Authorization: `Bearer ${authToken}` },
+      //   });
+
+      //   const { posts, nextStart: newNextStart } = response.data;
+
+      //   if (posts.length < limit) setHasMore(false);
+
+      //   nextStart = newNextStart;
+
+      //   console.log(posts);
+      //   setDataByTab((prevData) => ({
+      //     ...prevData,
+      //     [selectedTab]: posts,
+      //   }));
+      // }
+
+      setFetchedTabs(new Set(fetchedTabs).add(selectedTab));
     } catch (error) {
       console.error(`Error fetching data for tab ${selectedTab}:`, error);
     } finally {
       setIsLoading(false);
     }
   };
-  
 
-  // Fetch data when selectedTab changes
   useEffect(() => {
+    console.log('useEffect called');
     fetchDataForSelectedTab();
-  }, [selectedTab]);
+  }, [selectedTab, userProfileOpen]);
 
   const fetchData = async (start: number, limit = 29) => {
     setIsLoading(true);
     try {
       const response = await axios.get(`${apiBaseUrl}/api/posts/paginated?start=${start}&limit=${limit}`);
       const { posts } = response.data;
-      if (posts.length < limit) setHasMore(false); 
+      if (posts.length < limit) setHasMore(false);
       return posts;
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -104,23 +160,22 @@ export default function Home() {
         mb={8}
       >
         {activeTab === 0 && (
-          <HomePage 
+          <HomePage
             cardsData={cardsData}
             loadMoreCards={loadMoreCards}
             isLoading={isLoading}
             hasMore={hasMore}
-            // Pass profile tab data
-            selectedTab={selectedTab} 
-            setSelectedTab={setSelectedTab} 
-            data={fetchedData} // Pass down the fetched data
-            setProfileId={setProfileId} // Pass down the profile ID setter
-            setUserProfileOpen={setUserProfileOpen} // Pass down the profile open setter
+            selectedTab={selectedTab}
+            setSelectedTab={setSelectedTab}
+            data={dataByTab[selectedTab] || []} // Updated to use data from state object
+            setProfileId={setProfileId}
+            setUserProfileOpen={setUserProfileOpen}
           />
         )}
-        {activeTab === 1 && <CommunitiesPage />}
-        {activeTab === 2 && <NewPostPage />}
-        {activeTab === 3 && <ConfessionsPage />}
-        {activeTab === 4 && <ProfilePage />}
+        {/* {activeTab === 1 && <CommunitiesPage />} */}
+        {activeTab === 1 && <NewPostPage />}
+        {/* {activeTab === 3 && <ConfessionsPage />} */}
+        {activeTab === 2 && <ProfilePage />}
       </Box>
       <Footer activeTab={activeTab} setActiveTab={setActiveTab} />
     </>

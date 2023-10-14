@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import CloseIcon from '@mui/icons-material/Close';
 
 interface FullScreenCardProps {
   content: React.ReactElement;
@@ -25,6 +26,14 @@ const FullScreenCard: React.FC<FullScreenCardProps> = ({ content, closeCard }) =
   }, []);
 
   const cardWidth = windowWidth < 768 ? '90%' : '30%';
+
+  const closeIconStyle: React.CSSProperties = {
+    position: 'absolute',
+    top: '10px',
+    right: '10px',
+    cursor: 'pointer',
+    zIndex: 101,  // Make sure it's above other elements
+  };
 
   const overlayStyles: React.CSSProperties = {
     position: 'fixed',
@@ -59,10 +68,6 @@ const FullScreenCard: React.FC<FullScreenCardProps> = ({ content, closeCard }) =
     opacity: indicatorOpacity,
   };
 
-  const likeCard = () => {
-      
-  }
-
   const handleDrag = (e: any, { offset }: any) => {
     let opacityLevel =  Math.abs(offset.x) / 350;
     let sizeLevel = 5 + Math.abs(offset.x) / 80;  // Add this line
@@ -95,18 +100,23 @@ const FullScreenCard: React.FC<FullScreenCardProps> = ({ content, closeCard }) =
   };
 
   return (
-    <div style={overlayStyles}>
+    <div 
+      style={overlayStyles} 
+      onClick={closeCard}  // Add this line
+    >
       <motion.div
         style={cardStyles}
         drag="x"
         dragConstraints={{ left: 0, right: 0 }}
         onDrag={handleDrag}
         onDragEnd={handleDragEnd}
-        initial={{ opacity: 0, y: 50, scale: 1 }}  // Added scale: 1
-        animate={{ opacity: 1, y: 0, scale: 1 }}  // Added scale: 1
-        exit={{ opacity: 0, y: -50, scale: 0.5 }}  // Added scale: 0.5
-        transition={{ duration: 0.15 }}  // Added transition duration
+        initial={{ opacity: 0, y: 50, scale: 1 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: -50, scale: 0.5 }}
+        transition={{ duration: 0.15 }}
+        onClick={(e) => e.stopPropagation()}  // Already in place, to prevent this click from propagating to the overlay
       >
+        <CloseIcon style={closeIconStyle} onClick={closeCard} />
         {showIndicator && (
           <div style={indicatorStyles}>
             {showIndicator}

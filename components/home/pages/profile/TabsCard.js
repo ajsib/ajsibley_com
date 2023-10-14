@@ -10,25 +10,49 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { styled } from '@mui/system';
 import { Box } from '@mui/material';
 
-const StyledPaper = styled(Paper)`
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 20px;
-  font-family: 'Georgia', serif;
-  box-shadow: 0px -3px 3px rgba(0, 0, 0, 0.1);
-`;
 
-const StyledTabs = styled(Tabs)`
-  background-color: #eee;
-  box-shadow: 0px -3px 3px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  width: 100%;
-`;
 
-const TabsCard = ({ selectedTab, setSelectedTab, data }) => {
-  const tabNames = ["Posts", "Likes", "Followers", "Following"]; // Names of the tabs
+const TabsCard = ({ selectedTab, setSelectedTab }) => {
+
+  function getViewportWidth() {
+    // Check if the browser supports the window.innerWidth property
+    if (window.innerWidth !== undefined) {
+      // The window.innerWidth property gives the viewport width in pixels
+      return window.innerWidth;
+    } else {
+      // For older browsers, use document.documentElement.clientWidth
+      return document.documentElement.clientWidth;
+    }
+  }
+  
+  const StyledPaper = styled(Paper)`
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    font-family: 'Georgia', serif;
+    box-shadow: 0px -3px 3px rgba(0, 0, 0, 0.1);
+    width 100%;
+  `;
+  
+  const StyledTabs = styled(Tabs)`
+    background-color: #eee;
+    width: ${getViewportWidth()}px; // Corrected template string
+    box-shadow: 0px -3px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 450px;
+    flex-grow: 1; 
+  `;
+  
+  const StyledTab = styled(Tab)`
+    min-width: auto !important;
+    flex-grow: 1;
+    font-size: 16px !important;
+  `;
+
+
+  const tabNames = ["Posts", "Likes" ]; // "Followers", "Following"]; // Names of the tabs
   
   const handleChangeTab = (event, newValue) => {
     setSelectedTab(newValue);
@@ -48,10 +72,11 @@ const TabsCard = ({ selectedTab, setSelectedTab, data }) => {
             scrollButtons="auto"
             aria-label="scrollable auto tabs example"
           >
-            <Tab icon={<PostAddIcon />} label="32" />  {/* this will be the user posts   */}
-            <Tab icon={<ThumbUpIcon />} label="16" />  {/* this will be the user likes   */}
-            <Tab icon={<PeopleIcon />} label="1024" />  {/* this will be the user followers   */}
-            <Tab icon={<PersonAddIcon />} label="256" />  {/* this will be the user following   */}
+            <StyledTab icon={<PostAddIcon />} label="32" />
+            <StyledTab icon={<ThumbUpIcon />} label="16" />
+
+            {/* <Tab icon={<PeopleIcon />} label="1024" />  {/* this will be the user followers   */}
+            {/* <Tab icon={<PersonAddIcon />} label="256" /> {/* this will be the user following   */}
           </StyledTabs>
         </div>
       </StyledPaper>

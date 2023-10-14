@@ -35,9 +35,9 @@ export default function FooterNav({ activeTab, setActiveTab }: FooterNavProps) {
         }}
       >
         <BottomNavigationAction label="" icon={<HomeIcon />} />
-        <BottomNavigationAction label="" icon={<SearchIcon />} />
+        {/* <BottomNavigationAction label="" icon={<SearchIcon />} /> */}
         <BottomNavigationAction label="" icon={<AddCircleIcon />} />
-        <BottomNavigationAction label="" icon={<LockIcon />} />
+        {/* <BottomNavigationAction label="" icon={<LockIcon />} /> */}
         <BottomNavigationAction label="" icon={<PersonIcon />} />
       </BottomNavigation>
     </>

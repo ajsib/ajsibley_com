@@ -65,13 +65,13 @@ const ProfileSetup = () => {
 
   const checkRequiredFields = () => {
     // Add all required fields here
-    const requiredFields = ['name', 'program', 'yearOfStudy', 'bio'];
+    const requiredFields = ['name', 'program', 'yearOfStudy', 'bio', 'terms'];  // just added terms!
     return requiredFields.every(field => Boolean(formData[field]));
   };
 
   const cards = [
-    { front: <F1 />, back: <B1 formData={formData} handleInputChange={handleInputChange} /> },
-    { front: <F2 />, back: <B2 formData={formData} handleInputChange={handleInputChange} /> },
+    { front: <F1 />, back: <B1 formData={formData} handleInputChange={handleInputChange} />, hasRight: true },
+    { front: <F2 />, back: <B2 formData={formData} handleInputChange={handleInputChange} />, hasRight: true },
   ];
 
   return (
@@ -79,8 +79,7 @@ const ProfileSetup = () => {
       <PageTitle>Profile Setup</PageTitle>
       <ReactMarkdown> --- </ReactMarkdown>
       <WelcomeDescription>
-        Here we will get you started with a basic Profile! <br />
-        Do not worry, you can always edit your profile later. <br />
+        Here we will get you started with a basic Profile! <br /> <br />
       </WelcomeDescription>
       <CardGrid cards={cards} />
       <SubmitButtonContainer>

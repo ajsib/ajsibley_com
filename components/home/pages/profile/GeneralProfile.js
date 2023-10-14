@@ -33,7 +33,7 @@ const GeneralProfile = ({
 }) => {
 
   const [cards, setCards] = useState([]);
-  const { _id, name, program, yearOfStudy, bio, username, dateJoined, postInfo, network } = profileData;
+  const { _id, name, program, yearOfStudy, bio, username, dateJoined } = profileData;
 
   const userInfo = {
     _id,
@@ -50,7 +50,7 @@ const GeneralProfile = ({
   useEffect(() => {
     const createdCards = createCards(data);
     setCards(createdCards);
-  }, [data]);
+  }, [selectedTab, data]);
 
   const createCards = (posts) => {
     if (!posts) {
@@ -135,11 +135,13 @@ const GeneralProfile = ({
         <TabsCard
           selectedTab={selectedTab}
            setSelectedTab={setSelectedTab}
-           data={data}
+          //  data={data}
         />
       </TabsCardContainer>
 
-      {/* We want to put the cardgrid here */}
+      <Box
+        sx={{ height: '20px' }}
+      />
       <CardGrid cards={cards} />
     </div>
   );

@@ -7,7 +7,7 @@ import { Box } from '@mui/system';
 import { motion, useAnimation } from 'framer-motion';
 import GeneralProfile from '../pages/profile/GeneralProfile';
 
-const Home = ({ cardsData, loadMoreCards, isLoading, hasMore, selectedTab, setSelectedTab, data, setProfileId, setUserProfileOpen }) => {
+const HomePage = ({ cardsData, loadMoreCards, isLoading, hasMore, selectedTab, setSelectedTab, data, setProfileId, setUserProfileOpen }) => {
   const [cards, setCards] = useState([]);
   const controls = useAnimation();
   const [activeProfile, setActiveProfile] = useState(null);
@@ -72,7 +72,7 @@ const Home = ({ cardsData, loadMoreCards, isLoading, hasMore, selectedTab, setSe
     if (isLoading || !hasMore) return;
     if (
       window.innerHeight + document.documentElement.scrollTop >=
-      document.documentElement.offsetHeight - 800) {
+      document.documentElement.offsetHeight - 800) { 
       loadMoreCards();
     }
   }, [isLoading, hasMore, loadMoreCards]);
@@ -110,15 +110,15 @@ const Home = ({ cardsData, loadMoreCards, isLoading, hasMore, selectedTab, setSe
     <div style={{ textAlign: 'center', padding: '1px', background: '#fff' }}>
       {activeProfile ? (
         setUserProfileOpen(true),
-        <GeneralProfile 
-          profileData={activeProfile} 
-          setActiveProfile={setActiveProfile} 
-          handleReload={handleReload} 
-          selectedTab={selectedTab}
-          setSelectedTab={setSelectedTab}
-          data={data}
-          setUserProfileOpen={setUserProfileOpen}
-        />
+          <GeneralProfile 
+            profileData={activeProfile} 
+            setActiveProfile={setActiveProfile} 
+            handleReload={handleReload} 
+            selectedTab={selectedTab}
+            setSelectedTab={setSelectedTab}
+            data={data}
+            setUserProfileOpen={setUserProfileOpen}
+          />
       ) : (
         <>
           <Box sx={{ height: '20px' }} />
@@ -134,4 +134,4 @@ const Home = ({ cardsData, loadMoreCards, isLoading, hasMore, selectedTab, setSe
   );
 };
 
-export default React.memo(Home);
+export default React.memo(HomePage);
