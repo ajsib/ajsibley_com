@@ -15,8 +15,8 @@ const B2 = ({ formData, handleInputChange }) => {
     <Box margin="20px">
       <Typography variant="body1">
         Terms and Conditions: <br /> <br />
-        Headline is NOT affiliated with Queen's University. <br /> <br />
-        Headline is a social media platform created by a student to help connect the Queen's community with our own app.
+        Headline is NOT affiliated with Queen&apos;s University. <br /> <br />
+        Headline is a social media platform created by a student to help connect the Queen&apos;s community with our own app.
         <br /> <br /> Any derogatory, racist, sexist, or otherwise offensive content will NOT be tolerated. <br /> <br />
         Moral of the story: be a decent human, and treat others how you would like to be treated. <br /> <br />
       </Typography>
